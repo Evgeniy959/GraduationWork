@@ -1,9 +1,11 @@
+using HotelWebsiteBooking.Data;
 using HotelWebsiteBooking.Models;
 using HotelWebsiteBooking.Service.DateService;
 using HotelWebsiteBooking.Service.EmailService;
 using HotelWebsiteBooking.Service.RoomService;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Stripe;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +14,8 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddTransient<IEmailSender, EmailSender>();
 builder.Services.AddTransient<IDaoRoom, DbDaoRoom>();
 builder.Services.AddSingleton<DaoDate>();
+builder.Services.Configure<StripeOptions>(builder.Configuration.GetSection("Stripe"));
+StripeConfiguration.SetApiKey(builder.Configuration.GetSection("Stripe")["SecretKey"]);
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));

@@ -68,6 +68,10 @@
             "Npgsql.EntityFrameworkCore.PostgreSQL.Design": {
               "target": "Package",
               "version": "[1.1.0, )"
+            },
+            "Stripe.net": {
+              "target": "Package",
+              "version": "[41.21.0, )"
             }
           },
           "imports": [

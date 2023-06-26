@@ -66,7 +66,8 @@ namespace HotelWebsiteBooking.Controllers
             ViewBag.End = _date.end.ToLongDateString();
             if (_daoRoom.AddBookingAsync(date, client, comment, content, order).Result == true)
             {
-                return View("Info", client);
+                //return View("Info", client);
+                return View("Pay", client);
             }
             else
             {

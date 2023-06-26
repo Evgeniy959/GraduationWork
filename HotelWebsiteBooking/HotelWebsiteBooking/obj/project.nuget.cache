@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "y5DZjaEyXjDLwvh6E+BMxRosASplvhGLkpBxf1DQsRxXGawWnXpJRC1vMzX2pAXj3rUUkWEWYm2MbXlIujNJsQ==",
+  "dgSpecHash": "T9p7YBVGSi0BFxrEI1FIerEJEFaqboAxEHdxcxzjLcd9qi3OOI+fTi49bjY49ouXVER+fq0nMZt9CwtTflmDHg==",
   "success": true,
   "projectFilePath": "D:\\Study-11.02.2023\\Study\\Диплом\\Проекты\\GraduationWork\\HotelWebsiteBooking\\HotelWebsiteBooking\\HotelWebsiteBooking.csproj",
   "expectedPackageFiles": [
@@ -105,6 +105,7 @@
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\runtime.ubuntu.14.04-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.ubuntu.14.04-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\runtime.ubuntu.16.04-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.ubuntu.16.04-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
+    "C:\\Users\\Пользователь\\.nuget\\packages\\stripe.net\\41.21.0\\stripe.net.41.21.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.appcontext\\4.3.0\\system.appcontext.4.3.0.nupkg.sha512",
     "C:\\Users\\Пользователь\\.nuget\\packages\\system.buffers\\4.5.1\\system.buffers.4.5.1.nupkg.sha512",
     "C:\\Users\\Пользователь\\.nuget\\packages\\system.codedom\\4.4.0\\system.codedom.4.4.0.nupkg.sha512",
