@@ -1,0 +1,77 @@
+﻿@model IEnumerable<HotelWebsiteBooking.Models.Entity.Room>
+
+@{
+    ViewData["Title"] = "Rooms";
+}
+
+<div class="breadcrumb-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb-text">
+                    <h2>Our Rooms</h2>
+                    <div class="bt-option">
+                        <a asp-controller="Home" asp-action="Index">Home</a>
+                        <span>Rooms</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<section class="rooms-section spad">
+    <div class="container">
+        <div class="row">
+            @foreach (var room in Model)
+            {
+                <div class="col-lg-4 col-md-6">
+                    <div class="room-item">
+                        <img src="~/@room.Photo" alt="...">
+                        <div class="ri-text">
+                            <h4>@room.Сategory</h4>
+                            <partial name="_RoomCardPartial" model="room" />
+                        </div>
+                    </div>
+                </div>
+            }
+            <div class="col-lg-12">
+                <div class="room-pagination">
+                    @if (ViewBag.CurrentPage > 1)
+                    {
+                        <a asp-action="Rooms"
+                        asp-controller="Room"
+                        asp-route-page="@(ViewBag.CurrentPage-1)">Previous</a>
+                    }
+
+                    @for (var i = ViewBag.CurrentPage - 3; i <= ViewBag.CurrentPage + 3; i++)
+                    {
+
+                        @if (i > 0 && i <= ViewBag.TotalPages)
+                        {
+                            @if (ViewBag.CurrentPage == i)
+                            {
+                                <a asp-action="Rooms"
+                                asp-controller="Room"
+                                asp-route-page="@i">@i<i class="nav-link active" style="background-color:sandybrown"></i></a>
+                            }
+                            else
+                            {
+                                <a asp-action="Rooms"
+                                asp-controller="Room"
+                                asp-route-page="@i">@i</a>
+                            }
+                        }
+
+                    }
+
+                    @if (ViewBag.CurrentPage < ViewBag.TotalPages)
+                    {
+                        <a asp-action="Rooms"
+                        asp-controller="Room"
+                        asp-route-page="@(ViewBag.CurrentPage+1)">Next<i class="fa fa-long-arrow-right"></i></a>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

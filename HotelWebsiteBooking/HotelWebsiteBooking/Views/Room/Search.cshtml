@@ -1,0 +1,41 @@
+﻿@model IEnumerable<HotelWebsiteBooking.Models.Entity.RoomDate>
+
+@{
+    ViewData["Title"] = "Search";
+}
+
+<div class="breadcrumb-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb-text">
+                    <h2>Our spare rooms</h2>
+                    <div class="bt-option">
+                        <a asp-controller="Home" asp-action="Index">Home</a>
+                        <span>Rooms</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<section class="rooms-section spad">
+    <div class="container">
+        <div class="row">
+            @foreach (var date in Model)
+            {
+                <div class="col-lg-4 col-md-6">
+                    <div class="room-item">
+                        <img src="~/@date.Room.Photo" alt="...">
+                        <div class="ri-text">
+                            <h4>@date.Room.Сategory</h4>
+                            <h3>@(date.Room.Price * ViewBag.TotalPrice)$<span class="room-price">/Price for @ViewBag.TotalPrice nights</span></h3>
+                            <partial name="_RoomCardPartial" model="date.Room" />
+                            <a asp-controller="Room" asp-action="Booking" asp-route-id="@date.RoomId" class="primary-btn">Booking Now</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>

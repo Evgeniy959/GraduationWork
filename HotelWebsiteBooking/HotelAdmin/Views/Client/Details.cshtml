@@ -1,0 +1,67 @@
+﻿@model HotelAdmin.Models.Entity.Client
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <dl class="row">
+            <dt class="col-sm-4 info-sise">
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+            <dd class="col-sm-8 info-sise">
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+            <dt class="col-sm-4 info-sise">
+                @Html.DisplayNameFor(model => model.Surname)
+            </dt>
+            <dd class="col-sm-8 info-sise">
+                @Html.DisplayFor(model => model.Surname)
+            </dd>
+            <dt class="col-sm-4 info-sise">
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
+            <dd class="col-sm-8 info-sise">
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+            <dt class="col-sm-4 info-sise">
+                @Html.DisplayNameFor(model => model.Phone)
+            </dt>
+            <dd class="col-sm-8 info-sise">
+                @Html.DisplayFor(model => model.Phone)
+            </dd>
+            <dt class="col-sm-4 info-sise">
+                Start date
+            </dt>
+            <dd class="col-sm-8 info-sise">
+                @Html.DisplayFor(model => model.Start)
+            </dd>
+            <dt class="col-sm-4 info-sise">
+                End date
+            </dt>
+            <dd class="col-sm-8 info-sise">
+                @Html.DisplayFor(model => model.End)
+            </dd>
+            <dt class="col-sm-4 info-sise">
+                Room number
+            </dt>
+            <dd class="col-sm-8 info-sise">
+                @Html.DisplayFor(model => model.Room.Number)
+            </dd>
+            <dt class="col-sm-4 info-sise">
+                Сategory
+            </dt>
+            <dd class="col-sm-8 info-sise">
+                @Html.DisplayFor(model => model.Room.Сategory)
+            </dd>
+        </dl>
+    </div>
+</div>
+<br/>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-secondary">Edit</a>
+    <a asp-action="Index" class="btn btn-info">Back to List</a>
+</div>

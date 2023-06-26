@@ -1,0 +1,46 @@
+﻿@model HotelAdmin.Models.Entity.Room
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div class ="row">
+    <div class="col-md-6">
+        <img src="~/@Html.DisplayFor(model => model.Photo)" alt="Photo" style="height: 350px;">
+    </div>
+    <div class="col-md-6">
+        <dl class="row">
+            <dt class="col-sm-4 info-sise">
+                @Html.DisplayNameFor(model => model.Number)
+            </dt>
+            <dd class="col-sm-8 info-sise">
+                @Html.DisplayFor(model => model.Number)
+            </dd>
+            <dt class="col-sm-4 info-sise">
+                @Html.DisplayNameFor(model => model.Сategory)
+            </dt>
+            <dd class="col-sm-8 info-sise">
+                @Html.DisplayFor(model => model.Сategory)
+            </dd>
+            <dt class="col-sm-4 info-sise">
+                @Html.DisplayNameFor(model => model.Price)
+            </dt>
+            <dd class="col-sm-8 info-sise">
+                @Html.DisplayFor(model => model.Price)
+            </dd>
+            <dt class="col-sm-4 info-sise">
+                Persons count
+            </dt>
+            <dd class="col-sm-8 info-sise">
+                @Html.DisplayFor(model => model.PersonsCount)
+            </dd>
+        </dl>
+    </div>
+</div>
+<br/>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-secondary">Edit</a>
+    <a asp-action="Index" class="btn btn-info">Back to List</a>
+</div>

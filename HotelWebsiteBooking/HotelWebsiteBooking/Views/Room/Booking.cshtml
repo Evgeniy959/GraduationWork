@@ -1,0 +1,85 @@
+﻿@model HotelWebsiteBooking.Models.Entity.Client
+
+@{
+    ViewData["Title"] = "Booking";
+}
+
+@if (TempData.ContainsKey("Status"))
+{
+    <div class="alert alert-danger" role="alert">
+        <strong>Notification!</strong> @TempData["Status"]
+    </div>
+}
+
+<section class="contact-section spad">
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="contact-text">
+                    <h2>Sirius A Premium Hotel</h2>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td class="c-o">Address:</td>
+                            <td>Sochi, Lenin str., 2, a/z 110</td>
+                        </tr>
+                        <tr>
+                            <td class="c-o">Phone:</td>
+                            <td>8(800) 350 4590</td>
+                        </tr>
+                        <tr>
+                            <td class="c-o">Start date:</td>
+                            <td>@ViewBag.Start</td>
+                        </tr>
+                        <tr>
+                            <td class="c-o">End date:</td>
+                            <td>@ViewBag.End</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+            <div class="col-lg-7 offset-lg-1">
+                <div class="col-lg-12">
+                    <h2>Buyer's contact information</h2>
+                    <h4>Where to send booking information</h4>
+                </div>
+                <br class="clear">
+                <form asp-action="AddBooking" asp-controller="Room" method="post" class="contact-form">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="row">                    
+                    <div class="form-group">
+                        <input asp-for="RoomId" type="hidden"/>
+                    </div>
+                    <div class="col-lg-6">
+                        <input asp-for="Name" type="text" placeholder="Your Name"/>
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div class="col-lg-6">
+                        <input asp-for="Surname" type="text" placeholder="Your Surname" />
+                        <span asp-validation-for="Surname" class="text-danger"></span>
+                    </div>
+                    <div class="col-lg-6">
+                        <input asp-for="Phone" type="tel" placeholder="Your Phone"/>
+                        <span asp-validation-for="Phone" class="text-danger"></span>
+                    </div>
+                    <div class="col-lg-6">
+                        <input asp-for="Email" type="email" placeholder="Your Email"/>
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="col-lg-12">
+                        <textarea name="content" placeholder="Комментарий отелю"></textarea>
+                        <button type="submit">Submit Now</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</section>
+
+          
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
