@@ -11,6 +11,7 @@ using HotelWebsiteBooking.Service.DateService;
 using System.Collections;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using HotelWebsiteBooking.Service.RoomService;
+using Stripe;
 
 namespace HotelWebsiteBooking.Controllers
 {
@@ -46,10 +47,13 @@ namespace HotelWebsiteBooking.Controllers
             return rooms.Any() ? View(rooms) : RedirectToAction("NotFind");
         }
 
-        public IActionResult Booking(int id, Client client)
+        public IActionResult Booking(int id, int price, Client client)
         {
             ViewBag.Start = _date.start.ToLongDateString();
             ViewBag.End = _date.end.ToLongDateString();
+            ViewBag.Price = price;
+            ViewBag.TotalPrice = _date.end.Subtract(_date.start).Days;
+
             client.RoomId = id;
             return View(client);
         }
@@ -60,14 +64,15 @@ namespace HotelWebsiteBooking.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddBooking(RoomDate date, Client client, Comment comment, string content, Order order)
+        public IActionResult AddBooking(RoomDate date, Client client, Comment comment, string content, Order order, int price)
         {
             ViewBag.Start = _date.start.ToLongDateString();
             ViewBag.End = _date.end.ToLongDateString();
+            ViewBag.Price = price;
             if (_daoRoom.AddBookingAsync(date, client, comment, content, order).Result == true)
             {
                 //return View("Info", client);
-                return View("Pay", client);
+                return View("Pay");
             }
             else
             {
@@ -75,6 +80,46 @@ namespace HotelWebsiteBooking.Controllers
                 return View("Booking", client);
             }
         }
+        
+        [HttpPost]
+        public IActionResult Pay(string stripeEmail, string stripeToken)
+        {
+            var customers = new CustomerService();
+            var charges = new ChargeService();
+            var customer = customers.Create(new CustomerCreateOptions
+            {
+                Email = stripeEmail,
+                Source = stripeToken
+            });
+            var charge = charges.Create(new ChargeCreateOptions
+            {
+                Amount = 500,
+                Description = "Test Payment",
+                Currency = "usd",
+                Customer = customer.Id,
+                ReceiptEmail = stripeEmail,
+                Metadata = new Dictionary<string, string>()
+                {
+                    {"OrderId", "111" },
+                    {"Postcode", "LEE111" },
+
+                }
+            });
+            if (charge.Status == "succeeded")
+            {
+                string BalanceTransactoinId = charge.BalanceTransactionId;
+                ViewBag.Balance = BalanceTransactoinId;
+                ViewBag.Status = charge.Status;
+                //return View();
+                return View("InfoBalance");
+            }
+            else
+            {
+
+            }
+            return View();
+        }
+
 
     }
 }

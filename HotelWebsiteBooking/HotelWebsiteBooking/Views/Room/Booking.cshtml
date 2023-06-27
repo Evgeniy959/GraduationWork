@@ -47,7 +47,10 @@
                 <br class="clear">
                 <form asp-action="AddBooking" asp-controller="Room" method="post" class="contact-form">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="row">                    
+                <div class="row">
+                        <div class="form-group">
+                            <input name="Price" value="@(ViewBag.Price*ViewBag.TotalPrice)" />
+                        </div>
                     <div class="form-group">
                         <input asp-for="RoomId" type="hidden"/>
                     </div>

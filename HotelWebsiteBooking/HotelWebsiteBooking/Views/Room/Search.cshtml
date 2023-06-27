@@ -31,7 +31,7 @@
                             <h4>@date.Room.Сategory</h4>
                             <h3>@(date.Room.Price * ViewBag.TotalPrice)$<span class="room-price">/Price for @ViewBag.TotalPrice nights</span></h3>
                             <partial name="_RoomCardPartial" model="date.Room" />
-                            <a asp-controller="Room" asp-action="Booking" asp-route-id="@date.RoomId" class="primary-btn">Booking Now</a>
+                            <a asp-controller="Room" asp-action="Booking" asp-route-id="@date.RoomId" asp-route-price="@date.Room.Price" class="primary-btn">Booking Now</a>
                         </div>
                     </div>
                 </div>

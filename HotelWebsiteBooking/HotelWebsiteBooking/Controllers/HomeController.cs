@@ -37,41 +37,7 @@ namespace HotelWebsiteBooking.Controllers
         {
             return View();
         }
-
-        public IActionResult Pay(string stripeEmail, string stripeToken)
-        {
-            var customers = new CustomerService();
-            var charges = new ChargeService();
-            var customer = customers.Create(new CustomerCreateOptions { 
-                Email = stripeEmail, 
-                Source = stripeToken 
-            });
-            var charge = charges.Create(new ChargeCreateOptions
-            {
-                Amount = 500,
-                Description = "Test Payment",
-                Currency = "usd",
-                Customer = customer.Id,
-                ReceiptEmail= stripeEmail,
-                Metadata = new Dictionary<string, string>()
-                {
-                    {"OrderId", "111" },
-                    {"Postcode", "LEE111" },
-
-                }
-            });
-            if (charge.Status == "succeeded") 
-            { 
-                string BalanceTransactoinId = charge.BalanceTransactionId;
-                return View();
-            }
-            else
-            {
-
-            }
-            return View();
-        }
-
+        
         public IActionResult Privacy()
         {
             return View();
