@@ -8,9 +8,9 @@ namespace HotelAdmin.Models.Entity
         public Room? Room { get; set; }
         public int RoomId { get; set; }
         public string? Description { get; set; }
-        [Column(TypeName = "decimal(18,2)")]
-        public decimal Price { get; set; }
-        [Column(TypeName = "decimal(18,2)")]
-        public decimal OriginalPrice { get; set; }
+        //[Column(TypeName = "decimal(18,2)")]
+        public int Price { get; set; }
+        //[Column(TypeName = "decimal(18,2)")]
+        public int DiscountPrice { get; set; }
     }
 }
