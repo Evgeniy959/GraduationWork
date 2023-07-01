@@ -11,8 +11,8 @@ namespace HotelAdmin.Models.Entity
         public string Photo { get; set; }
         [Required]
         public string Сategory { get; set; }
-        [Required]
-        public int Price { get; set; }
+        /*[Required]
+        public int Price { get; set; }*/
         [Display(Name = "Persons count")]
         [Column("Persons_count")]
         [Required]
@@ -21,6 +21,7 @@ namespace HotelAdmin.Models.Entity
         // навигационные свойства
         public ICollection<RoomDate>? RoomDate { get; set; }
         public ICollection<Client>? Client { get; set; }
+        public ICollection<RoomTariff>? Tariff { get; set; }
 
         public Room()
         {
