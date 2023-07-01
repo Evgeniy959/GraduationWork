@@ -1,0 +1,97 @@
+﻿@model IEnumerable<HotelAdmin.Models.Entity.Order>
+
+@{
+    ViewData["Title"] = "Index";
+    int count = 1+(ViewBag.CurrentPage-1)*10;
+}
+
+<h1 class="text-center">List of orders with details</h1>
+
+<table class="table table-1">
+    <thead>
+        <tr class="tab-row">
+            <th scope="col">#</th>
+            <th scope="col">Number</th>
+            <th scope="col">Date</th>
+            <th scope="col">Client name</th>
+            <th scope="col">Surname</th>
+            <th scope="col">Email</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Start date</th>
+            <th scope="col">End date</th>
+            <th scope="col"><div class="col-14">Actions</div></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr class="tab-row">
+            <th scope="row">@(count++)</th>
+            <td>@item.Id</td>
+            <td>@item.Date</td>
+            <td>@item.Client.Name</td>
+            <td>@item.Client.Surname</td>
+            <td>@item.Client.Email</td>
+            <td>@item.Client.Phone</td>
+            <td>@item.Client.Start</td>
+            <td>@item.Client.End</td>
+            
+            <td><div class="col-14"><a asp-action="Delete" asp-controller="Order" asp-route-id="@item.Id" class="form-control btn btn-danger">Delete</a></div></td>
+        </tr>
+}
+    </tbody>
+</table>
+<br />
+<nav aria-label="Page navigation example" class="d-flex align-content-center justify-content-sm-center">
+    <ul class="pagination">
+
+        @if (ViewBag.CurrentPage > 1)
+        {
+            <li class="page-item">
+                <a class="page-link"
+               asp-action="Index"
+               asp-controller="Order"
+               asp-route-page="@(ViewBag.CurrentPage-1)">Previous</a>
+            </li>
+        }
+
+        @for (var i = ViewBag.CurrentPage - 3; i <= ViewBag.CurrentPage + 3; i++)
+        {
+
+            @if (i > 0 && i <= ViewBag.TotalPages)
+            {
+                @if (ViewBag.CurrentPage == i)
+                {
+                    <li class="page-item active">
+                        <a class="page-link"
+                        asp-action="Index"
+                        asp-controller="Order"
+                        asp-route-page="@i">@i</a>
+                    </li>
+                }
+                else
+                {
+
+                    <li class="page-item">
+                        <a class="page-link"
+                        asp-action="Index"
+                        asp-controller="Order"
+                        asp-route-page="@i">@i</a>
+                    </li>
+                }
+            }
+
+        }
+
+        @if (ViewBag.CurrentPage < ViewBag.TotalPages)
+        {
+            <li class="page-item">
+                <a class="page-link"
+                asp-action="Index"
+                asp-controller="Order"
+                asp-route-page="@(ViewBag.CurrentPage+1)">Next</a>
+            </li>
+        }
+
+    </ul>
+</nav>
+

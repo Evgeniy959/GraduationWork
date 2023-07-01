@@ -1,0 +1,32 @@
+﻿@using Microsoft.Extensions.Options
+@inject IOptions<HotelWebsiteBooking.Data.StripeOptions> Stripe
+
+@{
+    ViewData["Title"] = "Pay";
+}
+
+<div class="breadcrumb-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb-text">
+                    <div>
+                        <form asp-action="Pay" asp-controller="Room" method="post">
+                            <article>
+                                <label>Сумма: @ViewBag.Price руб</label>
+                                <input name="Price" value="@ViewBag.Price" type="hidden" />
+                            </article>
+                            <script src="//checkout.stripe.com/v2/checkout.js"
+                                    class="stripe-button" 
+                                    data-key="@Stripe.Value.PublishableKey" 
+                                    data-locale="auto" 
+                                    data-description="Sample Charge" 
+                                    data-amount="@(ViewBag.Price*100)">
+                            </script>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -69,20 +69,26 @@ namespace HotelWebsiteBooking.Controllers
             ViewBag.Start = _date.start.ToLongDateString();
             ViewBag.End = _date.end.ToLongDateString();
             ViewBag.Price = price;
-            if (_daoRoom.AddBookingAsync(date, client, comment, content, order).Result == true)
-            {
+            ViewBag.Сontent = content;
+            ViewBag.Name = client.Name;
+            ViewBag.Surname = client.Surname;
+            ViewBag.Email = client.Email;
+            ViewBag.Phone = client.Phone;
+            ViewBag.RoomId = client.RoomId;
+            //if (_daoRoom.AddBookingAsync(date, client, comment, content, order).Result == true)
+            //{
                 //return View("Info", client);
                 return View("Pay");
-            }
-            else
+            //}
+            /*else
             {
                 TempData["Status"] = "Failed booking, try again!";
                 return View("Booking", client);
-            }
+            }*/
         }
         
         [HttpPost]
-        public IActionResult Pay(string stripeEmail, string stripeToken)
+        public IActionResult Pay(string stripeEmail, string stripeToken, RoomDate date, Client client, Comment comment, string content, Order order, int price)
         {
             var customers = new CustomerService();
             var charges = new ChargeService();
@@ -93,7 +99,7 @@ namespace HotelWebsiteBooking.Controllers
             });
             var charge = charges.Create(new ChargeCreateOptions
             {
-                Amount = 500,
+                Amount = price*100,
                 Description = "Test Payment",
                 Currency = "usd",
                 Customer = customer.Id,
@@ -107,17 +113,28 @@ namespace HotelWebsiteBooking.Controllers
             });
             if (charge.Status == "succeeded")
             {
-                string BalanceTransactoinId = charge.BalanceTransactionId;
-                ViewBag.Balance = BalanceTransactoinId;
+                /*string BalanceTransactoinId = charge.BalanceTransactionId;
+                ViewBag.Balance = BalanceTransactoinId;*/
                 ViewBag.Status = charge.Status;
+                if (_daoRoom.AddBookingAsync(date, client, comment, content, order).Result == true)
+                {
+                    //return View("Info", client);
+                    return View("InfoPay");
+                }
+                else
+                {
+                    TempData["Status"] = "Неудачное бронирование, попробуйте еще раз!!";
+                    return View("Pay", client);
+                }
                 //return View();
-                return View("InfoBalance");
+                //return View("InfoBalance");
             }
             else
             {
-
+                TempData["Status"] = "Неудачная оплата, попробуйте еще раз!!";
+                return View("Pay", client);
             }
-            return View();
+            //return View();
         }
 
 
