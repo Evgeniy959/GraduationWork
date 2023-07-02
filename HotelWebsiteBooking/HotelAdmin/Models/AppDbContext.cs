@@ -33,23 +33,34 @@ namespace HotelAdmin.Models
                 new Room
                 {
                     Id = 1,
-                    Number = "125Л",
-                    Photo = "romantic",
-                    Сategory = "book"
+                    Number = "425Л",
+                    Photo = "img/room/room-5.jpg",
+                    Сategory = "Люкс",
+                    PersonsCount = 3
                 },
-                new Category
+                new Room
                 {
                     Id = 2,
-                    Name = "Биография",
-                    Url = "biography",
-                    Icon = "book"
+                    Number = "305ПЛ",
+                    Photo = "img/room/room-4.jpg",
+                    Сategory = "Полулюкс",
+                    PersonsCount = 3
                 },
-                new Category
+                new Room
                 {
                     Id = 3,
-                    Name = "Кулинария",
-                    Url = "cookbooks",
-                    Icon = "book"
+                    Number = "305ПЛ",
+                    Photo = "img/room/room-4.jpg",
+                    Сategory = "Полулюкс",
+                    PersonsCount = 3
+                },
+                new Room
+                {
+                    Id = 4,
+                    Number = "527С",
+                    Photo = "img/room/room-3.jpg",
+                    Сategory = "Стандарт",
+                    PersonsCount = 3
                 });
         }
     }
