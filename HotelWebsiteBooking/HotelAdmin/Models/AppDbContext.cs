@@ -21,6 +21,9 @@ namespace HotelAdmin.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<RoomTariff>()
+                .HasKey(r => r.RoomId);
+
             modelBuilder.Entity<Admin>().HasData(
                 new Admin
                 {
@@ -29,39 +32,216 @@ namespace HotelAdmin.Models
 
                 });
 
-            modelBuilder.Entity<Room>().HasData(
+            modelBuilder.Entity<Room>().HasData(                                
                 new Room
                 {
                     Id = 1,
-                    Number = "425Л",
-                    Photo = "img/room/room-5.jpg",
-                    Сategory = "Люкс",
-                    PersonsCount = 3
+                    Number = "204",
+                    Photo = "img/room/room-s.jpeg",
+                    Сategory = "Стандарт",
+                    Square = "20кв.м",
+                    PersonsCount = 2
                 },
                 new Room
                 {
                     Id = 2,
-                    Number = "305ПЛ",
-                    Photo = "img/room/room-4.jpg",
-                    Сategory = "Полулюкс",
-                    PersonsCount = 3
+                    Number = "307СБ",
+                    Photo = "img/room/room-sb.jpg",
+                    Сategory = "Стандарт с большой кроватью",
+                    Square = "20кв.м",
+                    PersonsCount = 2
                 },
                 new Room
                 {
                     Id = 3,
-                    Number = "305ПЛ",
-                    Photo = "img/room/room-4.jpg",
-                    Сategory = "Полулюкс",
-                    PersonsCount = 3
+                    Number = "405СУ",
+                    Photo = "img/room/room-sbi.jpeg",
+                    Сategory = "Стандарт Улучшенный с большой кроватью",
+                    Square = "25кв.м",
+                    PersonsCount = 2
                 },
                 new Room
                 {
                     Id = 4,
-                    Number = "527С",
-                    Photo = "img/room/room-3.jpg",
-                    Сategory = "Стандарт",
-                    PersonsCount = 3
+                    Number = "514ПЛ",
+                    Photo = "img/room/room-pl.jpg",
+                    Сategory = "Полулюкс",
+                    Square = "32кв.м",
+                    PersonsCount = 4
+                },
+                new Room
+                {
+                    Id = 5,
+                    Number = "618Л",
+                    Photo = "img/room/room-l.jpg",
+                    Сategory = "Люкс",
+                    Square = "46кв.м",
+                    PersonsCount = 4
+                },
+                new Room
+                {
+                    Id = 6,
+                    Number = "725ДЛ",
+                    Photo = "img/room/room-dl.jpeg",
+                    Сategory = "Делюкс",
+                    Square = "58кв.м",
+                    PersonsCount = 4                    
                 });
+            
+            modelBuilder.Entity<RoomDate>().HasData(
+                new RoomDate { Id = 1, RoomId = 1},
+                new RoomDate { Id = 2, RoomId = 2 },
+                new RoomDate { Id = 3, RoomId = 3 },
+                new RoomDate { Id = 4, RoomId = 4 },
+                new RoomDate { Id = 5, RoomId = 5 },
+                new RoomDate { Id = 6, RoomId = 6 }
+                );
+            
+            /*modelBuilder.Entity<RoomTariff>().HasData(
+                new RoomTariff
+                {
+                    RoomId = 1,
+                    Description = "Без питания",
+                    Price = 3600
+                },
+                new RoomTariff
+                {
+                    RoomId = 1,
+                    Description = "Завтрак включён",
+                    Price = 4800
+                },
+                new RoomTariff
+                {
+                    RoomId = 1,
+                    Description = "Полупансион",
+                    Price = 6400
+                },
+                new RoomTariff
+                {
+                    RoomId = 1,
+                    Description = "Включён завтрак, обед и ужин",
+                    Price = 7400
+                },
+                new RoomTariff
+                {
+                    RoomId = 2,
+                    Description = "Без питания",
+                    Price = 3600
+                },
+                new RoomTariff
+                {
+                    RoomId = 2,
+                    Description = "Завтрак включён",
+                    Price = 4800
+                },
+                new RoomTariff
+                {
+                    RoomId = 2,
+                    Description = "Полупансион",
+                    Price = 6400
+                },
+                new RoomTariff
+                {
+                    RoomId = 2,
+                    Description = "Включён завтрак, обед и ужин",
+                    Price = 7400
+                },
+                new RoomTariff
+                {
+                    RoomId = 3,
+                    Description = "Без питания",
+                    Price = 3600
+                },
+                new RoomTariff
+                {
+                    RoomId = 3,
+                    Description = "Завтрак включён",
+                    Price = 4800
+                },
+                new RoomTariff
+                {
+                    RoomId = 3,
+                    Description = "Полупансион",
+                    Price = 6400
+                },
+                new RoomTariff
+                {
+                    RoomId = 3,
+                    Description = "Включён завтрак, обед и ужин",
+                    Price = 7400
+                },
+                new RoomTariff
+                {
+                    RoomId = 4,
+                    Description = "Без питания",
+                    Price = 3600
+                },
+                new RoomTariff
+                {
+                    RoomId = 4,
+                    Description = "Завтрак включён",
+                    Price = 4800
+                },
+                new RoomTariff
+                {
+                    RoomId = 4,
+                    Description = "Полупансион",
+                    Price = 6400
+                },
+                new RoomTariff
+                {
+                    RoomId = 4,
+                    Description = "Включён завтрак, обед и ужин",
+                    Price = 7400
+                },
+                new RoomTariff
+                {
+                    RoomId = 5,
+                    Description = "Без питания",
+                    Price = 3600
+                },
+                new RoomTariff
+                {
+                    RoomId = 5,
+                    Description = "Завтрак включён",
+                    Price = 4800
+                },
+                new RoomTariff
+                {
+                    RoomId = 5,
+                    Description = "Полупансион",
+                    Price = 6400
+                },
+                new RoomTariff
+                {
+                    RoomId = 5,
+                    Description = "Включён завтрак, обед и ужин",
+                    Price = 7400
+                },
+                new RoomTariff
+                {
+                    RoomId = 6,
+                    Description = "Без питания",
+                    Price = 3600
+                },
+                new RoomTariff
+                {
+                    RoomId = 6,
+                    Description = "Завтрак включён",
+                    Price = 4800
+                },
+                new RoomTariff
+                {
+                    RoomId = 6,
+                    Description = "Полупансион",
+                    Price = 6400
+                },
+                new RoomTariff
+                {
+                    RoomId = 6,
+                    Description = "Включён завтрак, обед и ужин",
+                    Price = 7400
+                });*/
         }
     }
 }

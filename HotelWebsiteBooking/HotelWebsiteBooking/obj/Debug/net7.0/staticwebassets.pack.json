@@ -253,48 +253,32 @@
       "PackagePath": "staticwebassets\\img\\play.png"
     },
     {
-      "Id": "D:\\Study-11.02.2023\\Study\\Диплом\\Проекты\\GraduationWork\\HotelWebsiteBooking\\HotelWebsiteBooking\\wwwroot\\img\\room\\room-1.jpg",
-      "PackagePath": "staticwebassets\\img\\room\\room-1.jpg"
-    },
-    {
-      "Id": "D:\\Study-11.02.2023\\Study\\Диплом\\Проекты\\GraduationWork\\HotelWebsiteBooking\\HotelWebsiteBooking\\wwwroot\\img\\room\\room-2.jpg",
-      "PackagePath": "staticwebassets\\img\\room\\room-2.jpg"
-    },
-    {
-      "Id": "D:\\Study-11.02.2023\\Study\\Диплом\\Проекты\\GraduationWork\\HotelWebsiteBooking\\HotelWebsiteBooking\\wwwroot\\img\\room\\room-3.jpg",
-      "PackagePath": "staticwebassets\\img\\room\\room-3.jpg"
-    },
-    {
-      "Id": "D:\\Study-11.02.2023\\Study\\Диплом\\Проекты\\GraduationWork\\HotelWebsiteBooking\\HotelWebsiteBooking\\wwwroot\\img\\room\\room-4.jpg",
-      "PackagePath": "staticwebassets\\img\\room\\room-4.jpg"
-    },
-    {
-      "Id": "D:\\Study-11.02.2023\\Study\\Диплом\\Проекты\\GraduationWork\\HotelWebsiteBooking\\HotelWebsiteBooking\\wwwroot\\img\\room\\room-5.jpg",
-      "PackagePath": "staticwebassets\\img\\room\\room-5.jpg"
-    },
-    {
-      "Id": "D:\\Study-11.02.2023\\Study\\Диплом\\Проекты\\GraduationWork\\HotelWebsiteBooking\\HotelWebsiteBooking\\wwwroot\\img\\room\\room-6.jpg",
-      "PackagePath": "staticwebassets\\img\\room\\room-6.jpg"
-    },
-    {
-      "Id": "D:\\Study-11.02.2023\\Study\\Диплом\\Проекты\\GraduationWork\\HotelWebsiteBooking\\HotelWebsiteBooking\\wwwroot\\img\\room\\room-b1.jpg",
-      "PackagePath": "staticwebassets\\img\\room\\room-b1.jpg"
-    },
-    {
-      "Id": "D:\\Study-11.02.2023\\Study\\Диплом\\Проекты\\GraduationWork\\HotelWebsiteBooking\\HotelWebsiteBooking\\wwwroot\\img\\room\\room-b2.jpg",
-      "PackagePath": "staticwebassets\\img\\room\\room-b2.jpg"
-    },
-    {
-      "Id": "D:\\Study-11.02.2023\\Study\\Диплом\\Проекты\\GraduationWork\\HotelWebsiteBooking\\HotelWebsiteBooking\\wwwroot\\img\\room\\room-b3.jpg",
-      "PackagePath": "staticwebassets\\img\\room\\room-b3.jpg"
-    },
-    {
-      "Id": "D:\\Study-11.02.2023\\Study\\Диплом\\Проекты\\GraduationWork\\HotelWebsiteBooking\\HotelWebsiteBooking\\wwwroot\\img\\room\\room-b4.jpg",
-      "PackagePath": "staticwebassets\\img\\room\\room-b4.jpg"
-    },
-    {
       "Id": "D:\\Study-11.02.2023\\Study\\Диплом\\Проекты\\GraduationWork\\HotelWebsiteBooking\\HotelWebsiteBooking\\wwwroot\\img\\room\\room-details.jpg",
       "PackagePath": "staticwebassets\\img\\room\\room-details.jpg"
+    },
+    {
+      "Id": "D:\\Study-11.02.2023\\Study\\Диплом\\Проекты\\GraduationWork\\HotelWebsiteBooking\\HotelWebsiteBooking\\wwwroot\\img\\room\\room-dl.jpeg",
+      "PackagePath": "staticwebassets\\img\\room\\room-dl.jpeg"
+    },
+    {
+      "Id": "D:\\Study-11.02.2023\\Study\\Диплом\\Проекты\\GraduationWork\\HotelWebsiteBooking\\HotelWebsiteBooking\\wwwroot\\img\\room\\room-l.jpg",
+      "PackagePath": "staticwebassets\\img\\room\\room-l.jpg"
+    },
+    {
+      "Id": "D:\\Study-11.02.2023\\Study\\Диплом\\Проекты\\GraduationWork\\HotelWebsiteBooking\\HotelWebsiteBooking\\wwwroot\\img\\room\\room-pl.jpg",
+      "PackagePath": "staticwebassets\\img\\room\\room-pl.jpg"
+    },
+    {
+      "Id": "D:\\Study-11.02.2023\\Study\\Диплом\\Проекты\\GraduationWork\\HotelWebsiteBooking\\HotelWebsiteBooking\\wwwroot\\img\\room\\room-s.jpeg",
+      "PackagePath": "staticwebassets\\img\\room\\room-s.jpeg"
+    },
+    {
+      "Id": "D:\\Study-11.02.2023\\Study\\Диплом\\Проекты\\GraduationWork\\HotelWebsiteBooking\\HotelWebsiteBooking\\wwwroot\\img\\room\\room-sb.jpg",
+      "PackagePath": "staticwebassets\\img\\room\\room-sb.jpg"
+    },
+    {
+      "Id": "D:\\Study-11.02.2023\\Study\\Диплом\\Проекты\\GraduationWork\\HotelWebsiteBooking\\HotelWebsiteBooking\\wwwroot\\img\\room\\room-sbi.jpeg",
+      "PackagePath": "staticwebassets\\img\\room\\room-sbi.jpeg"
     },
     {
       "Id": "D:\\Study-11.02.2023\\Study\\Диплом\\Проекты\\GraduationWork\\HotelWebsiteBooking\\HotelWebsiteBooking\\wwwroot\\img\\rus-1.png",

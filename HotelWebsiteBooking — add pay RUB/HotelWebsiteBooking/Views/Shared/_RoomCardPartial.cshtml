@@ -1,0 +1,22 @@
+﻿@model HotelWebsiteBooking.Models.Entity.Room
+
+<table>
+    <tbody>
+        <tr>
+            <td class="r-o">Room number:</td>
+            <td>@Model.Number</td>
+        </tr>
+        <tr>
+            <td class="r-o">Persons count:</td>
+            <td>@Model.PersonsCount</td>
+        </tr>
+        <tr>
+            <td class="r-o">Price:</td>
+            <td>@Model.Price$/<span style="font-size:small">Pernight</span></td>
+        </tr>
+        <tr>
+            <td class="r-o">Services:</td>
+            <td>Wifi, Television, Bathroom,...</td>
+        </tr>
+    </tbody>
+</table>
