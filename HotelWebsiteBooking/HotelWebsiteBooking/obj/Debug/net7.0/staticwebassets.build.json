@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "RY6a44VWQO8HAJujMq13FrIpP17WC+dl6e/ZuClkyj0=",
+  "Hash": "M38RJCHl6UkPNrSH8B3/4XeL/9knuMuilxd/xVOXPE0=",
   "Source": "HotelWebsiteBooking",
   "BasePath": "_content/HotelWebsiteBooking",
   "Mode": "Default",
@@ -1222,6 +1222,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\img\\room\\room-sbi.jpeg"
+    },
+    {
+      "Identity": "D:\\Study-11.02.2023\\Study\\Диплом\\Проекты\\GraduationWork\\HotelWebsiteBooking\\HotelWebsiteBooking\\wwwroot\\img\\room\\room-si.jpeg",
+      "SourceId": "HotelWebsiteBooking",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Study-11.02.2023\\Study\\Диплом\\Проекты\\GraduationWork\\HotelWebsiteBooking\\HotelWebsiteBooking\\wwwroot\\",
+      "BasePath": "_content/HotelWebsiteBooking",
+      "RelativePath": "img/room/room-si.jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\room\\room-si.jpeg"
     },
     {
       "Identity": "D:\\Study-11.02.2023\\Study\\Диплом\\Проекты\\GraduationWork\\HotelWebsiteBooking\\HotelWebsiteBooking\\wwwroot\\img\\rus-1.png",

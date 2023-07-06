@@ -1,0 +1,45 @@
+﻿@using Microsoft.Extensions.Options
+@inject IOptions<HotelWebsiteBooking.Data.StripeOptions> Stripe
+
+@{
+    ViewData["Title"] = "Pay";
+}
+
+@if (TempData.ContainsKey("Status"))
+{
+    <div class="alert alert-danger" role="alert">
+        <strong>Notification!</strong> @TempData["Status"]
+    </div>
+}
+
+<div class="breadcrumb-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb-text">
+                    <div>
+                        <form asp-action="Pay" asp-controller="Room" method="post">
+                            <article>
+                                <label>Сумма: @ViewBag.Price руб</label>
+                                <input name="Price" value="@ViewBag.Price" type="hidden" />
+                                <input name="сontent" value="@ViewBag.Сontent" type="hidden" />
+                                <input name="Name" value="@ViewBag.Name" type="hidden" />
+                                <input name="Surname" value="@ViewBag.Surname" type="hidden" />
+                                <input name="Email" value="@ViewBag.Email" type="hidden" />
+                                <input name="Phone" value="@ViewBag.Phone" type="hidden" />
+                                <input name="RoomId" value="@ViewBag.RoomId" type="hidden" />
+                            </article>
+                            <script src="//checkout.stripe.com/v2/checkout.js"
+                                    class="stripe-button" 
+                                    data-key="@Stripe.Value.PublishableKey" 
+                                    data-locale="auto" 
+                                    data-description="Sample Charge" 
+                                    data-amount="@(ViewBag.Price*100)">
+                            </script>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

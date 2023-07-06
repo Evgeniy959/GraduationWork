@@ -20,9 +20,8 @@ namespace HotelWebsiteBooking.Controllers
 
         public IActionResult Index()
         {
-            /*return (_context.Comments.ToList()).Any() ?
-                          View(_context.Comments.ToList()) : View(new List<Comment>());*/
-            return View();
+            return (_context.Comments.ToList()).Any() ?
+                          View(_context.Comments.ToList()) : View(new List<Comment>());
         }
 
         public IActionResult AboutUs()

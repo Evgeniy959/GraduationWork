@@ -41,6 +41,10 @@
       "PackagePath": "staticwebassets\\img\\room\\room-sbi.jpeg"
     },
     {
+      "Id": "D:\\Study-11.02.2023\\Study\\Диплом\\Проекты\\GraduationWork\\HotelWebsiteBooking\\HotelAdmin\\wwwroot\\img\\room\\room-si.jpeg",
+      "PackagePath": "staticwebassets\\img\\room\\room-si.jpeg"
+    },
+    {
       "Id": "D:\\Study-11.02.2023\\Study\\Диплом\\Проекты\\GraduationWork\\HotelWebsiteBooking\\HotelAdmin\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },
@@ -223,6 +227,38 @@
     {
       "Id": "D:\\Study-11.02.2023\\Study\\Диплом\\Проекты\\GraduationWork\\HotelWebsiteBooking\\HotelAdmin\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
+    },
+    {
+      "Id": "D:\\Study-11.02.2023\\Study\\Диплом\\Проекты\\GraduationWork\\HotelWebsiteBooking\\HotelAdmin\\wwwroot\\lib\\chosen\\chosen-sprite.png",
+      "PackagePath": "staticwebassets\\lib\\chosen\\chosen-sprite.png"
+    },
+    {
+      "Id": "D:\\Study-11.02.2023\\Study\\Диплом\\Проекты\\GraduationWork\\HotelWebsiteBooking\\HotelAdmin\\wwwroot\\lib\\chosen\\chosen-sprite@2x.png",
+      "PackagePath": "staticwebassets\\lib\\chosen\\chosen-sprite@2x.png"
+    },
+    {
+      "Id": "D:\\Study-11.02.2023\\Study\\Диплом\\Проекты\\GraduationWork\\HotelWebsiteBooking\\HotelAdmin\\wwwroot\\lib\\chosen\\chosen.css",
+      "PackagePath": "staticwebassets\\lib\\chosen\\chosen.css"
+    },
+    {
+      "Id": "D:\\Study-11.02.2023\\Study\\Диплом\\Проекты\\GraduationWork\\HotelWebsiteBooking\\HotelAdmin\\wwwroot\\lib\\chosen\\chosen.jquery.js",
+      "PackagePath": "staticwebassets\\lib\\chosen\\chosen.jquery.js"
+    },
+    {
+      "Id": "D:\\Study-11.02.2023\\Study\\Диплом\\Проекты\\GraduationWork\\HotelWebsiteBooking\\HotelAdmin\\wwwroot\\lib\\chosen\\chosen.jquery.min.js",
+      "PackagePath": "staticwebassets\\lib\\chosen\\chosen.jquery.min.js"
+    },
+    {
+      "Id": "D:\\Study-11.02.2023\\Study\\Диплом\\Проекты\\GraduationWork\\HotelWebsiteBooking\\HotelAdmin\\wwwroot\\lib\\chosen\\chosen.min.css",
+      "PackagePath": "staticwebassets\\lib\\chosen\\chosen.min.css"
+    },
+    {
+      "Id": "D:\\Study-11.02.2023\\Study\\Диплом\\Проекты\\GraduationWork\\HotelWebsiteBooking\\HotelAdmin\\wwwroot\\lib\\chosen\\chosen.proto.js",
+      "PackagePath": "staticwebassets\\lib\\chosen\\chosen.proto.js"
+    },
+    {
+      "Id": "D:\\Study-11.02.2023\\Study\\Диплом\\Проекты\\GraduationWork\\HotelWebsiteBooking\\HotelAdmin\\wwwroot\\lib\\chosen\\chosen.proto.min.js",
+      "PackagePath": "staticwebassets\\lib\\chosen\\chosen.proto.min.js"
     },
     {
       "Id": "D:\\Study-11.02.2023\\Study\\Диплом\\Проекты\\GraduationWork\\HotelWebsiteBooking\\HotelAdmin\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",

@@ -9,7 +9,7 @@
 <h3>Are you sure you want to delete this?</h3>
 <div class="row">
     <div class="col-md-6">
-        <img src="~/@Html.DisplayFor(model => model.Photo)" alt="Photo" style="height: 350px;">
+        <img src="~/@Html.DisplayFor(model => model.Category.Photo)" alt="Photo" style="height: 350px;">
     </div>
     <div class="col-md-6">
         <dl class="row">
@@ -20,22 +20,22 @@
                 @Html.DisplayFor(model => model.Number)
             </dd>
             <dt class="col-sm-4 info-sise">
-                @Html.DisplayNameFor(model => model.Сategory)
+                @Html.DisplayNameFor(model => model.Category.Name)
             </dt>
             <dd class="col-sm-8 info-sise">
-                @Html.DisplayFor(model => model.Сategory)
+                @Html.DisplayFor(model => model.Category.Name)
             </dd>
             <dt class="col-sm-4 info-sise">
-                @Html.DisplayNameFor(model => model.Tariff.First().Price)
+                @Html.DisplayNameFor(model => model.Tariff.Min(t => t.Price))
             </dt>
             <dd class="col-sm-8 info-sise">
-                @Html.DisplayFor(model => model.Tariff.First().Price)
+                @Html.DisplayFor(model => model.Tariff.Min(t => t.Price))
             </dd>
             <dt class="col-sm-4 info-sise">
                 Persons count
             </dt>
             <dd class="col-sm-8 info-sise">
-                @Html.DisplayFor(model => model.PersonsCount)
+                @Html.DisplayFor(model => model.Category.PersonsCount)
             </dd>
         </dl>
     </div>    

@@ -22,22 +22,22 @@
                         </div>
                         <div class="form-group">
                             <input name="Photo" class="form-control" type="file">
-                            <span asp-validation-for="Photo" class="text-danger"></span>
+                            <span asp-validation-for="@Model.Category.Photo" class="text-danger"></span>
                         </div>
                         <div class="form-group">
-                            <label asp-for="Сategory" class="control-label"></label>
-                            <input asp-for="Сategory" class="form-control nav" />
-                            <span asp-validation-for="Сategory" class="text-danger"></span>
+                            <label asp-for="@Model.Category.Name" class="control-label"></label>
+                            <input asp-for="@Model.Category.Name" class="form-control nav" />
+                            <span asp-validation-for="@Model.Category.Name" class="text-danger"></span>
                         </div>
                         <div class="form-group">
-                            <label asp-for="@Model.Tariff.First().Price" class="control-label"></label>
-                            <input asp-for="@Model.Tariff.First().Price" class="form-control nav" />
-                            <span asp-validation-for="@Model.Tariff.First().Price" class="text-danger"></span>
+                            <label asp-for="@Model.Tariff.Min(t => t.Price)" class="control-label"></label>
+                            <input asp-for="@Model.Tariff.Min(t => t.Price)" class="form-control nav" />
+                            <span asp-validation-for="@Model.Tariff.Min(t => t.Price)" class="text-danger"></span>
                         </div>
                         <div class="form-group">
-                            <label asp-for="PersonsCount" class="control-label"></label>
-                            <input asp-for="PersonsCount" class="form-control nav" />
-                            <span asp-validation-for="PersonsCount" class="text-danger"></span>
+                            <label asp-for="@Model.Category.PersonsCount" class="control-label"></label>
+                            <input asp-for="@Model.Category.PersonsCount" class="form-control nav" />
+                            <span asp-validation-for="@Model.Category.PersonsCount" class="text-danger"></span>
                         </div>
                         <br />
                         <div class="form-group">

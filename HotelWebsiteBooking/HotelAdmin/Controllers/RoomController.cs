@@ -44,15 +44,17 @@ namespace HotelAdmin.Controllers
 
         public IActionResult Add()
         {
+            ViewBag.Categorys = new SelectList(_context.Categorys, "Id", "Name");
+            ViewBag.Tariffs = new MultiSelectList(_context.TariffPlans, "Id", "Description");
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Add([Bind("Id,Number,Photo,Сategory,Price,PersonsCount")] Room room, RoomDate date, IFormFile photo)
+        public IActionResult Add([Bind("Id,Number,Сategory,Price")] Room room, RoomDate date, ExtendedRoom extendedRoom, int[] tariffPlans)
         {
-            if (ModelState.IsValid && _daoRoom.AddAsync(room, date, photo).Result == true)
-            {
+            if (ModelState.IsValid && _daoRoom.AddAsync(room, date, extendedRoom, tariffPlans).Result == true)
+            {               
                 return RedirectToAction("Index");
             }
             else

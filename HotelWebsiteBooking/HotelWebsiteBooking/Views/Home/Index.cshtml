@@ -53,7 +53,7 @@
 </section>
 <!-- Hero Section End -->
 <!-- Testimonial Section Begin -->
-@*<section class="testimonial-section spad">
+<section class="testimonial-section spad">
     <div class="container">
         <div class="row">            
             <div class="col-lg-12">
@@ -66,7 +66,7 @@
         <div class="row">
             <div class="col-lg-8 offset-lg-2">
                 <div class="testimonial-slider owl-carousel">
-                @foreach (var comment in Model.Any() ? Model : new List<Model>())
+                @foreach (var comment in Model)
                 {
                     <div class="ts-item">
                         <p>
@@ -89,5 +89,5 @@
             </div>
         </div>
     </div>
-</section>*@
+</section>
 <!-- Testimonial Section End -->

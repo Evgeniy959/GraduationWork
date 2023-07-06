@@ -838,3 +838,4 @@ D:\Study-11.02.2023\Study\Диплом\Проекты\GraduationWork\HotelWebsit
 D:\Study-11.02.2023\Study\Диплом\Проекты\GraduationWork\HotelWebsiteBooking\HotelAdmin\obj\Debug\net7.0\HotelAdmin.csproj.CopyComplete
 D:\Study-11.02.2023\Study\Диплом\Проекты\GraduationWork\HotelWebsiteBooking\HotelAdmin\obj\Debug\net7.0\HotelAdmin.genruntimeconfig.cache
 D:\Study-11.02.2023\Study\Диплом\Проекты\GraduationWork\HotelWebsiteBooking\HotelAdmin\obj\Debug\net7.0\ref\HotelAdmin.dll
+D:\Study-11.02.2023\Study\Диплом\Проекты\GraduationWork\HotelWebsiteBooking\HotelAdmin\bin\Debug\net7.0\libman.json

@@ -6,21 +6,13 @@ namespace HotelAdmin.Models.Entity
     public class Room
     {
         public int Id { get; set; }
+        public int CategoryId { get; set; }
         [Required]
         public string Number { get; set; }
-        public string Photo { get; set; }
-        [Required]
-        public string Сategory { get; set; }
-        [Required]
-        public string Square { get; set; }
-        /*[Required]
-        public int Price { get; set; }*/
-        [Display(Name = "Persons count")]
-        [Column("Persons_count")]
-        [Required]
-        public int PersonsCount { get; set; }
+        //public List<RoomTariff> Tariff { get; set; } = new List<RoomTariff>();
 
         // навигационные свойства
+        public Category? Category { get; set; }
         public ICollection<RoomDate>? RoomDate { get; set; }
         public ICollection<Client>? Client { get; set; }
         public ICollection<RoomTariff>? Tariff { get; set; }
@@ -29,11 +21,6 @@ namespace HotelAdmin.Models.Entity
         {
             Id = default;
             Number = "";
-            Photo = "";
-            Сategory = "";
-            Square = "";
-            //Price = default;
-            PersonsCount = default;
         }
     }
 }

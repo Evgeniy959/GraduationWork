@@ -39,7 +39,86 @@ namespace HotelAdmin.Migrations
                         new
                         {
                             Email = "admin@mail.ru",
-                            Password = "$2a$11$wfuAgwaW4YqoJTb9pivFI.xgNIKSf8r5EX6se5CdnYXGWbowo.ksy"
+                            Password = "$2a$11$TMJRLAhvDhX8acDCVn8QfOGPWdeZ9a0daPO1.a/Isuexo7nliDrdi"
+                        });
+                });
+
+            modelBuilder.Entity("HotelAdmin.Models.Entity.Category", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("PersonsCount")
+                        .HasColumnType("integer")
+                        .HasColumnName("Persons_count");
+
+                    b.Property<string>("Photo")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Square")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Categorys");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Стандарт",
+                            PersonsCount = 2,
+                            Photo = "img/room/room-s.jpeg",
+                            Square = "20кв.м"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Стандарт с большой кроватью",
+                            PersonsCount = 2,
+                            Photo = "img/room/room-sb.jpg",
+                            Square = "20кв.м"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Стандарт Улучшенный",
+                            PersonsCount = 2,
+                            Photo = "img/room/room-si.jpeg",
+                            Square = "25кв.м"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Стандарт Улучшенный с большой кроватью",
+                            PersonsCount = 2,
+                            Photo = "img/room/room-sbi.jpeg",
+                            Square = "25кв.м"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = "Полулюкс",
+                            PersonsCount = 4,
+                            Photo = "img/room/room-pl.jpg",
+                            Square = "32кв.м"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Name = "Люкс",
+                            PersonsCount = 4,
+                            Photo = "img/room/room-l.jpg",
+                            Square = "46кв.м"
                         });
                 });
 
@@ -145,27 +224,16 @@ namespace HotelAdmin.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("integer");
+
                     b.Property<string>("Number")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("PersonsCount")
-                        .HasColumnType("integer")
-                        .HasColumnName("Persons_count");
-
-                    b.Property<string>("Photo")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Square")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Сategory")
-                        .IsRequired()
-                        .HasColumnType("text");
-
                     b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
 
                     b.ToTable("Rooms");
 
@@ -173,56 +241,38 @@ namespace HotelAdmin.Migrations
                         new
                         {
                             Id = 1,
-                            Number = "204",
-                            PersonsCount = 2,
-                            Photo = "img/room/room-s.jpeg",
-                            Square = "20кв.м",
-                            Сategory = "Стандарт"
+                            CategoryId = 1,
+                            Number = "204"
                         },
                         new
                         {
                             Id = 2,
-                            Number = "307СБ",
-                            PersonsCount = 2,
-                            Photo = "img/room/room-sb.jpg",
-                            Square = "20кв.м",
-                            Сategory = "Стандарт с большой кроватью"
+                            CategoryId = 2,
+                            Number = "307Б"
                         },
                         new
                         {
                             Id = 3,
-                            Number = "405СУ",
-                            PersonsCount = 2,
-                            Photo = "img/room/room-sbi.jpeg",
-                            Square = "25кв.м",
-                            Сategory = "Стандарт Улучшенный с большой кроватью"
+                            CategoryId = 3,
+                            Number = "405У"
                         },
                         new
                         {
                             Id = 4,
-                            Number = "514ПЛ",
-                            PersonsCount = 4,
-                            Photo = "img/room/room-pl.jpg",
-                            Square = "32кв.м",
-                            Сategory = "Полулюкс"
+                            CategoryId = 4,
+                            Number = "412УБ"
                         },
                         new
                         {
                             Id = 5,
-                            Number = "618Л",
-                            PersonsCount = 4,
-                            Photo = "img/room/room-l.jpg",
-                            Square = "46кв.м",
-                            Сategory = "Люкс"
+                            CategoryId = 5,
+                            Number = "514ПЛ"
                         },
                         new
                         {
                             Id = 6,
-                            Number = "725ДЛ",
-                            PersonsCount = 4,
-                            Photo = "img/room/room-dl.jpeg",
-                            Square = "58кв.м",
-                            Сategory = "Делюкс"
+                            CategoryId = 6,
+                            Number = "618Л"
                         });
                 });
 
@@ -289,26 +339,198 @@ namespace HotelAdmin.Migrations
 
             modelBuilder.Entity("HotelAdmin.Models.Entity.RoomTariff", b =>
                 {
-                    b.Property<int>("RoomId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("RoomId"));
-
-                    b.Property<string>("Description")
-                        .HasColumnType("text");
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<int>("Price")
                         .HasColumnType("integer");
 
-                    b.Property<int>("RoomId1")
+                    b.Property<int>("RoomId")
                         .HasColumnType("integer");
 
-                    b.HasKey("RoomId");
+                    b.Property<int>("TariffPlanId")
+                        .HasColumnType("integer");
 
-                    b.HasIndex("RoomId1");
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoomId");
+
+                    b.HasIndex("TariffPlanId");
 
                     b.ToTable("Tariffs");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Price = 3600,
+                            RoomId = 1,
+                            TariffPlanId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Price = 4800,
+                            RoomId = 1,
+                            TariffPlanId = 2
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Price = 6400,
+                            RoomId = 1,
+                            TariffPlanId = 3
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Price = 7400,
+                            RoomId = 1,
+                            TariffPlanId = 4
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Price = 3600,
+                            RoomId = 2,
+                            TariffPlanId = 1
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Price = 4800,
+                            RoomId = 2,
+                            TariffPlanId = 2
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Price = 6400,
+                            RoomId = 2,
+                            TariffPlanId = 3
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Price = 7400,
+                            RoomId = 2,
+                            TariffPlanId = 4
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Price = 4100,
+                            RoomId = 3,
+                            TariffPlanId = 1
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Price = 5300,
+                            RoomId = 3,
+                            TariffPlanId = 2
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Price = 6900,
+                            RoomId = 3,
+                            TariffPlanId = 3
+                        },
+                        new
+                        {
+                            Id = 12,
+                            Price = 7900,
+                            RoomId = 3,
+                            TariffPlanId = 4
+                        },
+                        new
+                        {
+                            Id = 13,
+                            Price = 4100,
+                            RoomId = 4,
+                            TariffPlanId = 1
+                        },
+                        new
+                        {
+                            Id = 14,
+                            Price = 5300,
+                            RoomId = 4,
+                            TariffPlanId = 2
+                        },
+                        new
+                        {
+                            Id = 15,
+                            Price = 6900,
+                            RoomId = 4,
+                            TariffPlanId = 3
+                        },
+                        new
+                        {
+                            Id = 16,
+                            Price = 7900,
+                            RoomId = 4,
+                            TariffPlanId = 4
+                        },
+                        new
+                        {
+                            Id = 17,
+                            Price = 10300,
+                            RoomId = 5,
+                            TariffPlanId = 1
+                        },
+                        new
+                        {
+                            Id = 18,
+                            Price = 11400,
+                            RoomId = 5,
+                            TariffPlanId = 2
+                        },
+                        new
+                        {
+                            Id = 19,
+                            Price = 12700,
+                            RoomId = 5,
+                            TariffPlanId = 3
+                        },
+                        new
+                        {
+                            Id = 20,
+                            Price = 13700,
+                            RoomId = 5,
+                            TariffPlanId = 4
+                        },
+                        new
+                        {
+                            Id = 21,
+                            Price = 12300,
+                            RoomId = 6,
+                            TariffPlanId = 1
+                        },
+                        new
+                        {
+                            Id = 22,
+                            Price = 13400,
+                            RoomId = 6,
+                            TariffPlanId = 2
+                        },
+                        new
+                        {
+                            Id = 23,
+                            Price = 14700,
+                            RoomId = 6,
+                            TariffPlanId = 3
+                        },
+                        new
+                        {
+                            Id = 24,
+                            Price = 15700,
+                            RoomId = 6,
+                            TariffPlanId = 4
+                        });
                 });
 
             modelBuilder.Entity("HotelAdmin.Models.Entity.Subscriber", b =>
@@ -330,6 +552,44 @@ namespace HotelAdmin.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Subscribers");
+                });
+
+            modelBuilder.Entity("HotelAdmin.Models.Entity.TariffPlan", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TariffPlans");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Description = "Без питания"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Description = "Завтрак включён"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Description = "Полупансион"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Description = "Включён завтрак, обед и ужин"
+                        });
                 });
 
             modelBuilder.Entity("HotelAdmin.Models.Entity.Client", b =>
@@ -354,6 +614,17 @@ namespace HotelAdmin.Migrations
                     b.Navigation("Client");
                 });
 
+            modelBuilder.Entity("HotelAdmin.Models.Entity.Room", b =>
+                {
+                    b.HasOne("HotelAdmin.Models.Entity.Category", "Category")
+                        .WithMany("Room")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
+                });
+
             modelBuilder.Entity("HotelAdmin.Models.Entity.RoomDate", b =>
                 {
                     b.HasOne("HotelAdmin.Models.Entity.Client", "Client")
@@ -375,10 +646,23 @@ namespace HotelAdmin.Migrations
                 {
                     b.HasOne("HotelAdmin.Models.Entity.Room", "Room")
                         .WithMany("Tariff")
-                        .HasForeignKey("RoomId1")
+                        .HasForeignKey("RoomId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("HotelAdmin.Models.Entity.TariffPlan", "TariffPlan")
+                        .WithMany()
+                        .HasForeignKey("TariffPlanId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Room");
+
+                    b.Navigation("TariffPlan");
+                });
+
+            modelBuilder.Entity("HotelAdmin.Models.Entity.Category", b =>
+                {
                     b.Navigation("Room");
                 });
 
