@@ -1,0 +1,35 @@
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+
+namespace HotelWebsiteBooking.Models.Entity
+{
+    public class Category
+    {
+        public int Id { get; set; }
+        [Required]
+        public string Name { get; set; }
+        public string Photo { get; set; }
+        /*[Required]
+        public string Сategory { get; set; }*/
+        [Required]
+        public string Square { get; set; }
+        /*[Required]
+        public int Price { get; set; }*/
+        [Display(Name = "Persons count")]
+        [Column("Persons_count")]
+        [Required]
+        public int PersonsCount { get; set; }
+
+        public ICollection<Room>? Rooms { get; set; }
+
+        public Category()
+        {
+            Id = default;
+            Photo = "";
+            Name = "";
+            Square = "";
+            PersonsCount = default;
+        }
+    }
+}

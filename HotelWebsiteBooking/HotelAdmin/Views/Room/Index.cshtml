@@ -14,11 +14,11 @@
     <thead>
         <tr class="tab-row">
             <th scope="col">#</th>
-            <th scope ="col">Number</th>            
-            <th scope="col">Сategory</th>
+            <th scope ="col">Номер</th>            
+            <th scope="col">Категория</th>
             <th scope="col">Цена от</th>
             <th scope="col">Количество человек до</th>
-            <th scope="col">Photo</th>
+            <th scope="col">Фото</th>
             <th scope="col"><div class="col-14"></div></th>
             <th scope="col"><div class="col-14">Actions</div></th>
             <th scope="col"><div class="col-14"></div></th>
@@ -30,7 +30,7 @@
             <th scope="row">@(count++)</th>
             <td>@item.Number</td>
             <td>@item.Category.Name</td>
-                <td>@item.Tariff.Min(t => t.Price)</td>
+                <td>@item.Tariffs.Min(t => t.Price)</td>
                 <td>@item.Category.PersonsCount</td>
             @*<td><img src="../HotelWebsiteBooking/wwwroot/@item.Photo" style="height: 100px;" alt="Photo"></td>*@
                 <td><img src="~/@item.Category.Photo" style="height: 125px;" alt="Photo"></td>

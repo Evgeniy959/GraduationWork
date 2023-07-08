@@ -39,7 +39,7 @@ namespace HotelAdmin.Migrations
                         new
                         {
                             Email = "admin@mail.ru",
-                            Password = "$2a$11$TMJRLAhvDhX8acDCVn8QfOGPWdeZ9a0daPO1.a/Isuexo7nliDrdi"
+                            Password = "$2a$11$7mFchA.hOPiYnEWzLt8cIOKfCwQ6262E4rw2AdN8SZJQ7gKUxTmOm"
                         });
                 });
 
@@ -205,6 +205,26 @@ namespace HotelAdmin.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("timestamp with time zone");
 
+                    b.HasKey("Id");
+
+                    b.HasIndex("ClientId");
+
+                    b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("HotelAdmin.Models.Entity.OrderPayable", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("Number");
+
+                    b.Property<int>("ClientId")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("timestamp with time zone");
+
                     b.Property<string>("Status")
                         .IsRequired()
                         .HasColumnType("text");
@@ -213,7 +233,7 @@ namespace HotelAdmin.Migrations
 
                     b.HasIndex("ClientId");
 
-                    b.ToTable("Orders");
+                    b.ToTable("OrderPayables");
                 });
 
             modelBuilder.Entity("HotelAdmin.Models.Entity.Room", b =>
@@ -227,9 +247,8 @@ namespace HotelAdmin.Migrations
                     b.Property<int>("CategoryId")
                         .HasColumnType("integer");
 
-                    b.Property<string>("Number")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<int>("Number")
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -242,37 +261,37 @@ namespace HotelAdmin.Migrations
                         {
                             Id = 1,
                             CategoryId = 1,
-                            Number = "204"
+                            Number = 204
                         },
                         new
                         {
                             Id = 2,
                             CategoryId = 2,
-                            Number = "307Б"
+                            Number = 307
                         },
                         new
                         {
                             Id = 3,
                             CategoryId = 3,
-                            Number = "405У"
+                            Number = 405
                         },
                         new
                         {
                             Id = 4,
                             CategoryId = 4,
-                            Number = "412УБ"
+                            Number = 412
                         },
                         new
                         {
                             Id = 5,
                             CategoryId = 5,
-                            Number = "514ПЛ"
+                            Number = 514
                         },
                         new
                         {
                             Id = 6,
                             CategoryId = 6,
-                            Number = "618Л"
+                            Number = 618
                         });
                 });
 
@@ -533,6 +552,207 @@ namespace HotelAdmin.Migrations
                         });
                 });
 
+            modelBuilder.Entity("HotelAdmin.Models.Entity.RoomTariffAdmin", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Price")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("RoomId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("TariffPlanId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
+
+                    b.HasIndex("RoomId");
+
+                    b.HasIndex("TariffPlanId");
+
+                    b.ToTable("TariffAdmins");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CategoryId = 1,
+                            Price = 3600,
+                            TariffPlanId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CategoryId = 1,
+                            Price = 4800,
+                            TariffPlanId = 2
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CategoryId = 1,
+                            Price = 6400,
+                            TariffPlanId = 3
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CategoryId = 1,
+                            Price = 7400,
+                            TariffPlanId = 4
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CategoryId = 2,
+                            Price = 3600,
+                            TariffPlanId = 1
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CategoryId = 2,
+                            Price = 4800,
+                            TariffPlanId = 2
+                        },
+                        new
+                        {
+                            Id = 7,
+                            CategoryId = 2,
+                            Price = 6400,
+                            TariffPlanId = 3
+                        },
+                        new
+                        {
+                            Id = 8,
+                            CategoryId = 2,
+                            Price = 7400,
+                            TariffPlanId = 4
+                        },
+                        new
+                        {
+                            Id = 9,
+                            CategoryId = 3,
+                            Price = 4100,
+                            TariffPlanId = 1
+                        },
+                        new
+                        {
+                            Id = 10,
+                            CategoryId = 3,
+                            Price = 5300,
+                            TariffPlanId = 2
+                        },
+                        new
+                        {
+                            Id = 11,
+                            CategoryId = 3,
+                            Price = 6900,
+                            TariffPlanId = 3
+                        },
+                        new
+                        {
+                            Id = 12,
+                            CategoryId = 3,
+                            Price = 7900,
+                            TariffPlanId = 4
+                        },
+                        new
+                        {
+                            Id = 13,
+                            CategoryId = 4,
+                            Price = 4100,
+                            TariffPlanId = 1
+                        },
+                        new
+                        {
+                            Id = 14,
+                            CategoryId = 4,
+                            Price = 5300,
+                            TariffPlanId = 2
+                        },
+                        new
+                        {
+                            Id = 15,
+                            CategoryId = 4,
+                            Price = 6900,
+                            TariffPlanId = 3
+                        },
+                        new
+                        {
+                            Id = 16,
+                            CategoryId = 4,
+                            Price = 7900,
+                            TariffPlanId = 4
+                        },
+                        new
+                        {
+                            Id = 17,
+                            CategoryId = 5,
+                            Price = 10300,
+                            TariffPlanId = 1
+                        },
+                        new
+                        {
+                            Id = 18,
+                            CategoryId = 5,
+                            Price = 11400,
+                            TariffPlanId = 2
+                        },
+                        new
+                        {
+                            Id = 19,
+                            CategoryId = 5,
+                            Price = 12700,
+                            TariffPlanId = 3
+                        },
+                        new
+                        {
+                            Id = 20,
+                            CategoryId = 5,
+                            Price = 13700,
+                            TariffPlanId = 4
+                        },
+                        new
+                        {
+                            Id = 21,
+                            CategoryId = 6,
+                            Price = 12300,
+                            TariffPlanId = 1
+                        },
+                        new
+                        {
+                            Id = 22,
+                            CategoryId = 6,
+                            Price = 13400,
+                            TariffPlanId = 2
+                        },
+                        new
+                        {
+                            Id = 23,
+                            CategoryId = 6,
+                            Price = 14700,
+                            TariffPlanId = 3
+                        },
+                        new
+                        {
+                            Id = 24,
+                            CategoryId = 6,
+                            Price = 15700,
+                            TariffPlanId = 4
+                        });
+                });
+
             modelBuilder.Entity("HotelAdmin.Models.Entity.Subscriber", b =>
                 {
                     b.Property<int>("Id")
@@ -595,7 +815,7 @@ namespace HotelAdmin.Migrations
             modelBuilder.Entity("HotelAdmin.Models.Entity.Client", b =>
                 {
                     b.HasOne("HotelAdmin.Models.Entity.Room", "Room")
-                        .WithMany("Client")
+                        .WithMany("Clients")
                         .HasForeignKey("RoomId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -614,10 +834,21 @@ namespace HotelAdmin.Migrations
                     b.Navigation("Client");
                 });
 
+            modelBuilder.Entity("HotelAdmin.Models.Entity.OrderPayable", b =>
+                {
+                    b.HasOne("HotelAdmin.Models.Entity.Client", "Client")
+                        .WithMany()
+                        .HasForeignKey("ClientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Client");
+                });
+
             modelBuilder.Entity("HotelAdmin.Models.Entity.Room", b =>
                 {
                     b.HasOne("HotelAdmin.Models.Entity.Category", "Category")
-                        .WithMany("Room")
+                        .WithMany("Rooms")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -632,7 +863,7 @@ namespace HotelAdmin.Migrations
                         .HasForeignKey("ClientId");
 
                     b.HasOne("HotelAdmin.Models.Entity.Room", "Room")
-                        .WithMany("RoomDate")
+                        .WithMany("RoomDates")
                         .HasForeignKey("RoomId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -645,13 +876,13 @@ namespace HotelAdmin.Migrations
             modelBuilder.Entity("HotelAdmin.Models.Entity.RoomTariff", b =>
                 {
                     b.HasOne("HotelAdmin.Models.Entity.Room", "Room")
-                        .WithMany("Tariff")
+                        .WithMany("Tariffs")
                         .HasForeignKey("RoomId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("HotelAdmin.Models.Entity.TariffPlan", "TariffPlan")
-                        .WithMany()
+                        .WithMany("Tariffs")
                         .HasForeignKey("TariffPlanId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -661,18 +892,50 @@ namespace HotelAdmin.Migrations
                     b.Navigation("TariffPlan");
                 });
 
+            modelBuilder.Entity("HotelAdmin.Models.Entity.RoomTariffAdmin", b =>
+                {
+                    b.HasOne("HotelAdmin.Models.Entity.Category", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("HotelAdmin.Models.Entity.Room", null)
+                        .WithMany("TariffAdmins")
+                        .HasForeignKey("RoomId");
+
+                    b.HasOne("HotelAdmin.Models.Entity.TariffPlan", "TariffPlan")
+                        .WithMany("TariffAdmins")
+                        .HasForeignKey("TariffPlanId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
+
+                    b.Navigation("TariffPlan");
+                });
+
             modelBuilder.Entity("HotelAdmin.Models.Entity.Category", b =>
                 {
-                    b.Navigation("Room");
+                    b.Navigation("Rooms");
                 });
 
             modelBuilder.Entity("HotelAdmin.Models.Entity.Room", b =>
                 {
-                    b.Navigation("Client");
+                    b.Navigation("Clients");
 
-                    b.Navigation("RoomDate");
+                    b.Navigation("RoomDates");
 
-                    b.Navigation("Tariff");
+                    b.Navigation("TariffAdmins");
+
+                    b.Navigation("Tariffs");
+                });
+
+            modelBuilder.Entity("HotelAdmin.Models.Entity.TariffPlan", b =>
+                {
+                    b.Navigation("TariffAdmins");
+
+                    b.Navigation("Tariffs");
                 });
 #pragma warning restore 612, 618
         }

@@ -5,7 +5,7 @@ namespace HotelAdmin.Service.RoomService
     public interface IDaoRoom
     {
         Task<List<Room>> IndexAsync(int page);
-        Task<bool> AddAsync(Room room, RoomDate date, ExtendedRoom extendedRoom, int[] tariffPlans);
+        Task<bool> AddAsync(Room room, RoomDate date, int[] tariffPlans);
         Task<Room> GetAsync(int id);
         Task<bool> UpdateAsync(Room room, IFormFile photo);
         Task DeleteConfirmedAsync(int id);

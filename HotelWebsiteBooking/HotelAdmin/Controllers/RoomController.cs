@@ -42,18 +42,18 @@ namespace HotelAdmin.Controllers
             return View(_daoRoom.GetAsync(id).Result);
         }
 
-        public IActionResult Add()
+        public IActionResult Add(Room room)
         {
             ViewBag.Categorys = new SelectList(_context.Categorys, "Id", "Name");
             ViewBag.Tariffs = new MultiSelectList(_context.TariffPlans, "Id", "Description");
-            return View();
+            return View(room);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Add([Bind("Id,Number,Сategory,Price")] Room room, RoomDate date, ExtendedRoom extendedRoom, int[] tariffPlans)
+        public IActionResult Add(Room room, RoomDate date, int[] tariffPlans)
         {
-            if (ModelState.IsValid && _daoRoom.AddAsync(room, date, extendedRoom, tariffPlans).Result == true)
+            if (ModelState.IsValid && _daoRoom.AddAsync(room, date, tariffPlans).Result == true)
             {               
                 return RedirectToAction("Index");
             }

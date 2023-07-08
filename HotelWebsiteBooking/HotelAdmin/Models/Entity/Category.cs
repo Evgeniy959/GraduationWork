@@ -21,7 +21,7 @@ namespace HotelAdmin.Models.Entity
         [Required]
         public int PersonsCount { get; set; }
 
-        public ICollection<Room>? Room { get; set; }
+        public ICollection<Room>? Rooms { get; set; }
 
         public Category()
         {

@@ -12,10 +12,14 @@ namespace HotelWebsiteBooking.Models
         }
 
         public DbSet<Room> Rooms { get; set; }
+        public DbSet<Category> Categorys { get; set; }
         public DbSet<RoomDate> Dates { get; set; }
         public DbSet<Client> Clients { get; set; }
         public DbSet<Order> Orders { get; set; }
-        public DbSet<Subscriber> Subscribers { get; set; } 
-        public DbSet<Comment> Comments { get; set; } 
+        public DbSet<OrderPayable> OrderPayables { get; set; }
+        public DbSet<Subscriber> Subscribers { get; set; }
+        public DbSet<Comment> Comments { get; set; }
+        public DbSet<RoomTariff> Tariffs { get; set; }
+        public DbSet<TariffPlan> TariffPlans { get; set; }
     }
 }

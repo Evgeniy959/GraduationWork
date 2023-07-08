@@ -15,9 +15,11 @@ namespace HotelAdmin.Models
         public DbSet<RoomDate> Dates { get; set; }
         public DbSet<Client> Clients { get; set; }
         public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderPayable> OrderPayables { get; set; }
         public DbSet<Subscriber> Subscribers { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<RoomTariff> Tariffs { get; set; }
+        public DbSet<RoomTariffAdmin> TariffAdmins { get; set; }
         public DbSet<TariffPlan> TariffPlans { get; set; }
         public DbSet<Admin> Admins { get; set; }
 
@@ -88,37 +90,37 @@ namespace HotelAdmin.Models
                 new Room
                 {
                     Id = 1,
-                    Number = "204",
+                    Number = 204,
                     CategoryId = 1
                 },
                 new Room
                 {
                     Id = 2,
-                    Number = "307Б",
+                    Number = 307,
                     CategoryId = 2
                 },
                 new Room
                 {
                     Id = 3,
-                    Number = "405У",
+                    Number = 405,
                     CategoryId = 3
                 },
                 new Room
                 {
                     Id = 4,
-                    Number = "412УБ",
+                    Number = 412,
                     CategoryId = 4
                 },
                 new Room
                 {
                     Id = 5,
-                    Number = "514ПЛ",
+                    Number = 514,
                     CategoryId = 5
                 },
                 new Room
                 {
                     Id = 6,
-                    Number = "618Л",
+                    Number = 618,
                     CategoryId = 6
                 });
 
@@ -137,6 +139,176 @@ namespace HotelAdmin.Models
                 new TariffPlan { Id = 3, Description = "Полупансион" },
                 new TariffPlan { Id = 4, Description = "Включён завтрак, обед и ужин" }
                 );
+
+            modelBuilder.Entity<RoomTariffAdmin>().HasData(
+                new RoomTariffAdmin
+                {
+                    Id = 1,
+                    CategoryId = 1,
+                    TariffPlanId = 1,
+                    Price = 3600
+                },
+                new RoomTariffAdmin
+                {
+                    Id = 2,
+                    CategoryId = 1,
+                    TariffPlanId = 2,
+                    Price = 4800
+                },
+                new RoomTariffAdmin
+                {
+                    Id = 3,
+                    CategoryId = 1,
+                    TariffPlanId = 3,
+                    Price = 6400
+                },
+                new RoomTariffAdmin
+                {
+                    Id = 4,
+                    CategoryId = 1,
+                    TariffPlanId = 4,
+                    Price = 7400
+                },
+                new RoomTariffAdmin
+                {
+                    Id = 5,
+                    CategoryId = 2,
+                    TariffPlanId = 1,
+                    Price = 3600
+                },
+                new RoomTariffAdmin
+                {
+                    Id = 6,
+                    CategoryId = 2,
+                    TariffPlanId = 2,
+                    Price = 4800
+                },
+                new RoomTariffAdmin
+                {
+                    Id = 7,
+                    CategoryId = 2,
+                    TariffPlanId = 3,
+                    Price = 6400
+                },
+                new RoomTariffAdmin
+                {
+                    Id = 8,
+                    CategoryId = 2,
+                    TariffPlanId = 4,
+                    Price = 7400
+                },
+                new RoomTariffAdmin
+                {
+                    Id = 9,
+                    CategoryId = 3,
+                    TariffPlanId = 1,
+                    Price = 4100
+                },
+                new RoomTariffAdmin
+                {
+                    Id = 10,
+                    CategoryId = 3,
+                    TariffPlanId = 2,
+                    Price = 5300
+                },
+                new RoomTariffAdmin
+                {
+                    Id = 11,
+                    CategoryId = 3,
+                    TariffPlanId = 3,
+                    Price = 6900
+                },
+                new RoomTariffAdmin
+                {
+                    Id = 12,
+                    CategoryId = 3,
+                    TariffPlanId = 4,
+                    Price = 7900
+                },
+                new RoomTariffAdmin
+                {
+                    Id = 13,
+                    CategoryId = 4,
+                    TariffPlanId = 1,
+                    Price = 4100
+                },
+                new RoomTariffAdmin
+                {
+                    Id = 14,
+                    CategoryId = 4,
+                    TariffPlanId = 2,
+                    Price = 5300
+                },
+                new RoomTariffAdmin
+                {
+                    Id = 15,
+                    CategoryId = 4,
+                    TariffPlanId = 3,
+                    Price = 6900
+                },
+                new RoomTariffAdmin
+                {
+                    Id = 16,
+                    CategoryId = 4,
+                    TariffPlanId = 4,
+                    Price = 7900
+                },
+                new RoomTariffAdmin
+                {
+                    Id = 17,
+                    CategoryId = 5,
+                    TariffPlanId = 1,
+                    Price = 10300
+                },
+                new RoomTariffAdmin
+                {
+                    Id = 18,
+                    CategoryId = 5,
+                    TariffPlanId = 2,
+                    Price = 11400
+                },
+                new RoomTariffAdmin
+                {
+                    Id = 19,
+                    CategoryId = 5,
+                    TariffPlanId = 3,
+                    Price = 12700
+                },
+                new RoomTariffAdmin
+                {
+                    Id = 20,
+                    CategoryId = 5,
+                    TariffPlanId = 4,
+                    Price = 13700
+                },
+                new RoomTariffAdmin
+                {
+                    Id = 21,
+                    CategoryId = 6,
+                    TariffPlanId = 1,
+                    Price = 12300
+                },
+                new RoomTariffAdmin
+                {
+                    Id = 22,
+                    CategoryId = 6,
+                    TariffPlanId = 2,
+                    Price = 13400
+                },
+                new RoomTariffAdmin
+                {
+                    Id = 23,
+                    CategoryId = 6,
+                    TariffPlanId = 3,
+                    Price = 14700
+                },
+                new RoomTariffAdmin
+                {
+                    Id = 24,
+                    CategoryId = 6,
+                    TariffPlanId = 4,
+                    Price = 15700
+                });
 
 
             modelBuilder.Entity<RoomTariff>().HasData(

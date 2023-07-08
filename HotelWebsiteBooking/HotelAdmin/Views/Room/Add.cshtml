@@ -1,4 +1,4 @@
-﻿@model HotelAdmin.Models.Entity.ExtendedRoom
+﻿@model HotelAdmin.Models.Entity.Room
 
 @{
     ViewData["Title"] = "Add";
@@ -38,20 +38,19 @@
                         </div>
                         <div class="form-group">
                             <label class="control-label">TariffPlans</label>
-                            <select name="tariffPlans" id="tariffPlans" multiple asp-items="@ViewBag.Tariffs" class="form-control">
+                            <select required name="tariffPlans" id="tariffPlans" multiple asp-items="@ViewBag.Tariffs" class="form-control">
                             </select>
-                            <span asp-validation-for="CategoryId" class="text-danger"></span>
                         </div>
                         @*<div class="form-group">
                             <label asp-for="@Model.Tariff.Min(t => t.Price)" class="control-label"></label>
                             <input asp-for="@Model.Tariff.Min(t => t.Price)" class="form-control nav" />
                             <span asp-validation-for="@Model.Tariff.Min(t => t.Price)" class="text-danger"></span>
-                        </div>*@
+                        </div>
                         <div class="form-group">
                             <label asp-for="Price" class="control-label"></label>
                             <input asp-for="Price" class="form-control nav" />
                             <span asp-validation-for="Price" class="text-danger"></span>
-                        </div>
+                        </div>*@
                         <br/>
                         <div class="form-group">
                             <div class="row">

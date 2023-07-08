@@ -6,25 +6,21 @@ namespace HotelWebsiteBooking.Models.Entity
     public class Room
     {
         public int Id { get; set; }
-        public string Number { get; set; }
-        public string Photo { get; set; }
-        public string Сategory { get; set; }
-        public int Price { get; set; }
-        [Column("Persons_count")]
-        public int PersonsCount { get; set; }
-        
+        public int CategoryId { get; set; }
+        //[Required]
+        public int Number { get; set; }
+        //public List<RoomTariff> Tariff { get; set; } = new List<RoomTariff>();
+
         // навигационные свойства
-        public ICollection<RoomDate>? RoomDate { get; set; } 
-        public ICollection<Client>? Client { get; set; } 
+        public Category? Category { get; set; }
+        public ICollection<RoomDate>? RoomDates { get; set; }
+        public ICollection<Client>? Clients { get; set; }
+        public ICollection<RoomTariff>? Tariffs { get; set; }
 
         public Room()
         {
             Id = default;
-            Number = "";
-            Photo = "";
-            Сategory = "";
-            Price = default;
-            PersonsCount = default;
+            Number = default;
         }
     }
 }

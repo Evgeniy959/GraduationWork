@@ -11,6 +11,5 @@
         // навигационные свойства
         public Room? Room { get; set; }
         public Client? Client { get; set; }
-
     }
 }

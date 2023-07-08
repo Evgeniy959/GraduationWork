@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace HotelWebsiteBooking.Models.Entity
 {
@@ -13,14 +12,13 @@ namespace HotelWebsiteBooking.Models.Entity
         public string Content { get; set; }
         public DateTime Date { get; set; }
 
-        public Comment() 
+        public Comment()
         {
             Name = "";
             Email = "";
             Content = "";
             Date = DateTime.Now;
-            
-        }
 
+        }
     }
 }

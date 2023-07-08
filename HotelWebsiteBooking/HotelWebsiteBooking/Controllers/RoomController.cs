@@ -42,7 +42,7 @@ namespace HotelWebsiteBooking.Controllers
         [HttpPost]
         public IActionResult Search(DateTime start, DateTime end, int count)
         {
-            ViewBag.TotalPrice = end.Subtract(start).Days;
+            ViewBag.Days = end.Subtract(start).Days;
             var rooms = _daoRoom.SearchAsync(start, end, count).Result;
             return rooms.Any() ? View(rooms) : RedirectToAction("NotFind");
         }

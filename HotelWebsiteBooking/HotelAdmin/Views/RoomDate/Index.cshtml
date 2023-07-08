@@ -28,7 +28,7 @@
             <td>@item.End</td>
             <td>@item.Room.Number</td>
             <td>@item.Room.Category.Name</td>
-                <td>@item.Room.Tariff.Min(t => t.Price)</td>
+                <td>@item.Room.Tariffs.Min(t => t.Price)</td>
                 <td>@item.Room.Category.PersonsCount</td>
             
             <td><div class="col-14"><a asp-action="Delete" asp-controller="RoomDate" asp-route-id="@item.Id" class="form-control btn btn-danger">Delete</a></div></td>

@@ -82,11 +82,12 @@ namespace HotelWebsiteBooking.Service.RoomService
         {
             _date.SaveDate(start, end);
             await _context.Rooms.LoadAsync();
-            var rooms = await _context.Dates.Where(x => x.Room.PersonsCount == count).ToListAsync();
-            var roomDates = await _context.Dates.Where(x => x.Start >= start && x.End <= end && x.Room.PersonsCount == count
-            || x.Start >= start && x.Start <= end && x.End >= end && x.Room.PersonsCount == count
-            || x.Start <= start && x.End <= end && x.End >= start && x.Room.PersonsCount == count
-            || x.Start <= start && x.End >= end && x.Room.PersonsCount == count).ToListAsync();
+            await _context.Categorys.LoadAsync();
+            var rooms = await _context.Dates.Where(x => x.Room.Category.PersonsCount <= count).ToListAsync();
+            var roomDates = await _context.Dates.Where(x => x.Start >= start && x.End <= end && x.Room.Category.PersonsCount <= count
+            || x.Start >= start && x.Start <= end && x.End >= end && x.Room.Category.PersonsCount <= count
+            || x.Start <= start && x.End <= end && x.End >= start && x.Room.Category.PersonsCount <= count
+            || x.Start <= start && x.End >= end && x.Room.Category.PersonsCount <= count).ToListAsync();
             
             List<RoomDate> list = new List<RoomDate>();
 

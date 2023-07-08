@@ -15,13 +15,13 @@ namespace HotelAdmin.Service.RoomService
             _context = context;
         }
         
-        public async Task<bool> AddAsync(Room room, RoomDate date, ExtendedRoom extendedRoom, int[] tariffPlans)
+        public async Task<bool> AddAsync(Room room, RoomDate date, int[] tariffPlans)
         {
-            var roomExsist = await _context.Rooms.FirstOrDefaultAsync(x => x.Number == extendedRoom.Number);
+            var roomExsist = await _context.Rooms.FirstOrDefaultAsync(x => x.Number == room.Number);
             if (roomExsist == null) 
             {
-                room.Number = extendedRoom.Number;
-                room.CategoryId = extendedRoom.CategoryId;
+                /*room.Number = extendedRoom.Number;
+                room.CategoryId = extendedRoom.CategoryId;*/
                 await _context.AddAsync(room);
                 await _context.SaveChangesAsync();
                 date.RoomId = room.Id;
@@ -34,7 +34,8 @@ namespace HotelAdmin.Service.RoomService
                 await _context.AddAsync(date);
                 //await _context.AddAsync(roomTariff);
                 //int price = (await _context.Tariffs.FirstOrDefaultAsync(x => x.TariffPlanId == extendedRoom.TariffPlanId && x.Room.CategoryId == extendedRoom.CategoryId)).Price;
-                await _context.Tariffs.AddRangeAsync(tariffPlans.Select(t => new RoomTariff { RoomId = room.Id, TariffPlanId = t, Price = (_context.Tariffs.FirstOrDefaultAsync(x => x.TariffPlanId == t && x.Room.CategoryId == extendedRoom.CategoryId)).Result.Price }));
+                //await _context.Tariffs.AddRangeAsync(tariffPlans.Select(t => new RoomTariff { RoomId = room.Id, TariffPlanId = t, Price = (_context.TariffAdmins.FirstOrDefaultAsync(x => x.TariffPlanId == t && x.CategoryId == room.CategoryId)).Result.Price }));
+                await _context.Tariffs.AddRangeAsync(tariffPlans.Select(t => new RoomTariff { RoomId = room.Id, TariffPlanId = t, Price = (_context.TariffAdmins.FirstOrDefault(x => x.TariffPlanId == t && x.CategoryId == room.CategoryId)).Price }));
                 await _context.SaveChangesAsync();
                 return true;
             }
