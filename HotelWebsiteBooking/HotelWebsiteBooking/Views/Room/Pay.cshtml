@@ -33,8 +33,8 @@
                                     class="stripe-button" 
                                     data-key="@Stripe.Value.PublishableKey" 
                                     data-locale="auto" 
-                                    data-description="Sample Charge" 
-                                    data-amount="@(ViewBag.Price*100)">
+                                    data-description="К оплате: @ViewBag.Price Р"
+                                    data-email="@ViewBag.Email">
                             </script>
                         </form>
                     </div>

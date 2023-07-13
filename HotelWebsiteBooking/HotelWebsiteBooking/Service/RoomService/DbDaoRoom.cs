@@ -15,15 +15,24 @@ namespace HotelWebsiteBooking.Service.RoomService
             _context = context;
             _date = date;
         }
-        public async Task<bool> AddBookingAsync(RoomDate date, Client client, Comment comment, string content, Order order)
+        public async Task<bool> AddBookingAsync(RoomDate date, Client client, Comment comment, string content, Order order, OrderPayable orderPay)
         {
             client.Start = _date.start;
             client.End = _date.end;
             _context.Add(client);
             await _context.SaveChangesAsync();
-            order.ClientId = client.Id;
-            order.Date = DateTime.Now;
-            _context.Add(order);
+            if (orderPay.Status == "оплачено")
+            {
+                orderPay.ClientId = client.Id;
+                orderPay.Date = DateTime.Now;
+                _context.Add(orderPay);
+            }
+            else
+            {
+                order.ClientId = client.Id;
+                order.Date = DateTime.Now;
+                _context.Add(order);
+            }
             await _context.SaveChangesAsync();
             date.Start = _date.start;
             date.End = _date.end;
@@ -56,13 +65,15 @@ namespace HotelWebsiteBooking.Service.RoomService
 
         public async Task<List<Room>> RoomsAsync(int page)
         {
+            await _context.Categorys.LoadAsync();
+            await _context.Tariffs.LoadAsync();
             var rooms = await _context.Rooms.ToListAsync();           
             List<Room> list = new List<Room>();
-            int TotalPages = (int)Math.Ceiling(rooms.Count / 9.0);
+            int TotalPages = (int)Math.Ceiling(rooms.Count / 3.0);
 
             if (page == TotalPages)
             {
-                for (var i = (page - 1) * 9; i < rooms.Count; i++)
+                for (var i = (page - 1) * 3; i < rooms.Count; i++)
                 {
                     list.Add(rooms[i]);
                 }
@@ -70,11 +81,13 @@ namespace HotelWebsiteBooking.Service.RoomService
             }
             else
             {
-                for (var i = (page - 1) * 9; i < page * 9; i++)
+                for (var i = (page - 1) * 3; i < page * 3; i++)
                 {
                     list.Add(rooms[i]);
                 }
-                return list;
+                return list.GroupBy(g => g.CategoryId)
+                        .Select(r => r.First())
+                        .ToList();
             }
         }
 
@@ -83,11 +96,19 @@ namespace HotelWebsiteBooking.Service.RoomService
             _date.SaveDate(start, end);
             await _context.Rooms.LoadAsync();
             await _context.Categorys.LoadAsync();
-            var rooms = await _context.Dates.Where(x => x.Room.Category.PersonsCount <= count).ToListAsync();
-            var roomDates = await _context.Dates.Where(x => x.Start >= start && x.End <= end && x.Room.Category.PersonsCount <= count
-            || x.Start >= start && x.Start <= end && x.End >= end && x.Room.Category.PersonsCount <= count
-            || x.Start <= start && x.End <= end && x.End >= start && x.Room.Category.PersonsCount <= count
-            || x.Start <= start && x.End >= end && x.Room.Category.PersonsCount <= count).ToListAsync();
+            await _context.Tariffs.LoadAsync();
+            /*var dateNull = await _context.Dates.Where(x => x.Start == null && x.Room.Category.PersonsCount >= count).ToListAsync();
+            if (dateNull.Count > 0)
+            {
+                return dateNull.GroupBy(g => g.Room.CategoryId)
+                        .Select(r => r.First())
+                        .ToList(); 
+            }*/
+            var rooms = await _context.Dates.Where(x => x.Room.Category.PersonsCount >= count).ToListAsync();
+            var roomDates = await _context.Dates.Where(x => x.Start >= start && x.End <= end && x.Room.Category.PersonsCount >= count
+            || x.Start >= start && x.Start <= end && x.End >= end && x.Room.Category.PersonsCount >= count
+            || x.Start <= start && x.End <= end && x.End >= start && x.Room.Category.PersonsCount >= count
+            || x.Start <= start && x.End >= end && x.Room.Category.PersonsCount >= count).ToListAsync();
             
             List<RoomDate> list = new List<RoomDate>();
 
@@ -109,7 +130,7 @@ namespace HotelWebsiteBooking.Service.RoomService
                 }
 
             }
-            return rooms.GroupBy(g => g.RoomId)
+            return rooms.GroupBy(g => g.Room.CategoryId)
                         .Select(r => r.First())
                         .ToList();
         }

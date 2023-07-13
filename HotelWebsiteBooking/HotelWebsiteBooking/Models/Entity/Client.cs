@@ -6,17 +6,11 @@ namespace HotelWebsiteBooking.Models.Entity
     {
         public int Id { get; set; }
         public int RoomId { get; set; }
-        [Required]
         public string Name { get; set; }
-        [Required]
         public string Surname { get; set; }
-        [Required]
         public string Email { get; set; }
-        [Required]
         public string Phone { get; set; }
-        [Required]
         public DateTime Start { get; set; }
-        [Required]
         public DateTime End { get; set; }
 
         // навигационные свойства

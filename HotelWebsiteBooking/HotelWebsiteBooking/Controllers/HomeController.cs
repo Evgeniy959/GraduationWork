@@ -38,7 +38,12 @@ namespace HotelWebsiteBooking.Controllers
         {
             return View();
         }
-        
+
+        public IActionResult room()
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();

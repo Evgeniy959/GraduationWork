@@ -6,6 +6,6 @@ namespace HotelWebsiteBooking.Service.RoomService
     {
         Task<List<Room>> RoomsAsync(int page);
         Task<List<RoomDate>> SearchAsync(DateTime start, DateTime end, int count);
-        Task<bool> AddBookingAsync(RoomDate date, Client client, Comment comment, string content, Order order);
+        Task<bool> AddBookingAsync(RoomDate date, Client client, Comment comment, string content, Order order, OrderPayable orderPay);
     }
 }

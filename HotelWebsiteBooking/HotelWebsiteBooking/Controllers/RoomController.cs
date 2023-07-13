@@ -47,13 +47,39 @@ namespace HotelWebsiteBooking.Controllers
             return rooms.Any() ? View(rooms) : RedirectToAction("NotFind");
         }
 
-        public IActionResult Booking(int id, int price, Client client)
+        public IActionResult Tariff(int id, int price)
         {
             ViewBag.Start = _date.start.ToLongDateString();
             ViewBag.End = _date.end.ToLongDateString();
             ViewBag.Price = price;
-            ViewBag.TotalPrice = _date.end.Subtract(_date.start).Days;
+            ViewBag.Days = _date.end.Subtract(_date.start).Days;
+            _context.Categorys.Load();
+            _context.Tariffs.Load();
+            _context.TariffPlans.Load();
+            var room = _context.Rooms.FirstOrDefault(m => m.Id == id);
+            if (room == null)
+            {
+                return NotFound();
+            }
+            //room.Id = id;
+            return View(room);
+        }
 
+        public IActionResult Booking(int id, int price, Client client, string tariff)
+        {
+            ViewBag.Start = _date.start.ToShortDateString();
+            ViewBag.End = _date.end.ToShortDateString();
+            ViewBag.Price = price;
+            ViewBag.Days = _date.end.Subtract(_date.start).Days;
+            ViewBag.Tariff = tariff;
+            _context.Rooms.Load();
+            _context.Categorys.Load();
+            var room = _context.Rooms.FirstOrDefault(m => m.Id == id);
+            if (room == null)
+            {
+                return NotFound();
+            }
+            client.Room = room;
             client.RoomId = id;
             return View(client);
         }
@@ -64,50 +90,64 @@ namespace HotelWebsiteBooking.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddBooking(RoomDate date, Client client, Comment comment, string content, Order order, int price)
+        public IActionResult AddBooking(RoomDate date, Client client, Comment comment, string content, string payment, int price, Order order, OrderPayable orderPay)
         {
-            ViewBag.Start = _date.start.ToLongDateString();
-            ViewBag.End = _date.end.ToLongDateString();
-            ViewBag.Price = price;
-            ViewBag.Сontent = content;
-            ViewBag.Name = client.Name;
-            ViewBag.Surname = client.Surname;
-            ViewBag.Email = client.Email;
-            ViewBag.Phone = client.Phone;
-            ViewBag.RoomId = client.RoomId;
-            //if (_daoRoom.AddBookingAsync(date, client, comment, content, order).Result == true)
-            //{
-                //return View("Info", client);
-                return View("Pay");
-            //}
-            /*else
+            /*ViewBag.Start = _date.start.ToLongDateString();
+            ViewBag.End = _date.end.ToLongDateString();*/
+            
+            if (payment == "online")
             {
-                TempData["Status"] = "Failed booking, try again!";
+                ViewBag.Price = price;
+                ViewBag.Сontent = content;
+                ViewBag.Name = client.Name;
+                ViewBag.Surname = client.Surname;
+                ViewBag.Email = client.Email;
+                ViewBag.Phone = client.Phone;
+                ViewBag.RoomId = client.RoomId;
+                return View("Pay");
+            }
+            else if (payment == "inPlace")
+            {
+                if (_daoRoom.AddBookingAsync(date, client, comment, content, order, orderPay).Result == true)
+                {
+                    return View("Info", client);
+                }
+                
+            }
+            //else
+            //{
+                TempData["Status"] = "Неудачное бронирование, попробуйте еще раз!";
                 return View("Booking", client);
-            }*/
+            //}
+            //return View("Booking", client);
         }
         
         [HttpPost]
-        public IActionResult Pay(string stripeEmail, string stripeToken, RoomDate date, Client client, Comment comment, string content, Order order, int price)
+        public IActionResult Pay(string stripeEmail, string stripeToken, RoomDate date, Client client, Comment comment, string content, Order order, OrderPayable orderPay, int price)
         {
             var customers = new CustomerService();
             var charges = new ChargeService();
             var customer = customers.Create(new CustomerCreateOptions
             {
                 Email = stripeEmail,
+                //Email = client.Email,
+                //Name = client.Name,
                 Source = stripeToken
             });
+            var orderPayId = Guid.NewGuid();
             var charge = charges.Create(new ChargeCreateOptions
             {
                 Amount = price*100,
-                Description = "Test Payment",
-                Currency = "usd",
+                Description = orderPayId.ToString(),
+                Currency = "rub",
                 Customer = customer.Id,
                 ReceiptEmail = stripeEmail,
                 Metadata = new Dictionary<string, string>()
                 {
-                    {"OrderId", "111" },
-                    {"Postcode", "LEE111" },
+                    {"Order number", orderPayId.ToString() },
+                    {"Client email", client.Email },
+                    {"Client name", client.Name },
+                    {"Client surname", client.Surname }
 
                 }
             });
@@ -116,14 +156,17 @@ namespace HotelWebsiteBooking.Controllers
                 /*string BalanceTransactoinId = charge.BalanceTransactionId;
                 ViewBag.Balance = BalanceTransactoinId;*/
                 ViewBag.Status = charge.Status;
-                if (_daoRoom.AddBookingAsync(date, client, comment, content, order).Result == true)
+                orderPay.Id = orderPayId;
+                orderPay.Status = "оплачено";
+                if (_daoRoom.AddBookingAsync(date, client, comment, content, order, orderPay).Result == true)
                 {
                     //return View("Info", client);
+                    //charge.Description = order.Id.ToString();
                     return View("InfoPay");
                 }
                 else
                 {
-                    TempData["Status"] = "Неудачное бронирование, попробуйте еще раз!!";
+                    TempData["Status"] = "Неудачное бронирование, попробуйте еще раз!";
                     return View("Pay", client);
                 }
                 //return View();
@@ -131,7 +174,7 @@ namespace HotelWebsiteBooking.Controllers
             }
             else
             {
-                TempData["Status"] = "Неудачная оплата, попробуйте еще раз!!";
+                TempData["Status"] = "Неудачная оплата, попробуйте еще раз!";
                 return View("Pay", client);
             }
             //return View();

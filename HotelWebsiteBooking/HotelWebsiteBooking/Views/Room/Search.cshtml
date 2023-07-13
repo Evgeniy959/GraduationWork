@@ -29,9 +29,9 @@
                         <img src="~/@date.Room.Category.Photo" alt="...">
                         <div class="ri-text">
                             <h4>@date.Room.Category.Name</h4>
-                            <h3>@(date.Room.Price * ViewBag.Days) Р<span class="room-price">/Price for @ViewBag.TotalPrice nights</span></h3>
+                            <h3>от @(date.Room.Tariffs.Min(t => t.Price) * ViewBag.Days) Р<span class="room-price">/Price for @ViewBag.Days nights</span></h3>
                             <partial name="_RoomCardPartial" model="date.Room" />
-                            <a asp-controller="Room" asp-action="Booking" asp-route-id="@date.RoomId" asp-route-price="@date.Room.Price" class="primary-btn">Booking Now</a>
+                            <a asp-controller="Room" asp-action="Tariff" asp-route-id="@date.RoomId" asp-route-price="@date.Room.Tariffs.Min(t => t.Price)" class="primary-btn">Booking Now</a>
                         </div>
                     </div>
                 </div>

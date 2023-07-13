@@ -42,7 +42,7 @@ namespace HotelAdmin.Models
                     Id = 1,
                     Photo = "img/room/room-s.jpeg",
                     Name = "Стандарт",
-                    Square = "20кв.м",
+                    Square = "20 кв.м",
                     PersonsCount = 2
                 },
                 new Category
@@ -50,7 +50,7 @@ namespace HotelAdmin.Models
                     Id = 2,
                     Photo = "img/room/room-sb.jpg",
                     Name = "Стандарт с большой кроватью",
-                    Square = "20кв.м",
+                    Square = "20 кв.м",
                     PersonsCount = 2
                 },
                 new Category
@@ -58,7 +58,7 @@ namespace HotelAdmin.Models
                     Id = 3,
                     Photo = "img/room/room-si.jpeg",
                     Name = "Стандарт Улучшенный",
-                    Square = "25кв.м",
+                    Square = "25 кв.м",
                     PersonsCount = 2
                 },
                 new Category
@@ -66,7 +66,7 @@ namespace HotelAdmin.Models
                     Id = 4,
                     Photo = "img/room/room-sbi.jpeg",
                     Name = "Стандарт Улучшенный с большой кроватью",
-                    Square = "25кв.м",
+                    Square = "25 кв.м",
                     PersonsCount = 2
                 },
                 new Category
@@ -74,7 +74,7 @@ namespace HotelAdmin.Models
                     Id = 5,
                     Photo = "img/room/room-pl.jpg",
                     Name = "Полулюкс",
-                    Square = "32кв.м",
+                    Square = "32 кв.м",
                     PersonsCount = 4
                 },
                 new Category
@@ -82,7 +82,7 @@ namespace HotelAdmin.Models
                     Id = 6,
                     Photo = "img/room/room-l.jpg",
                     Name = "Люкс",
-                    Square = "46кв.м",
+                    Square = "46 кв.м",
                     PersonsCount = 4
                 });
 

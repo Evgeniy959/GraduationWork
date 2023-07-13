@@ -26,9 +26,10 @@
             {
                 <div class="col-lg-4 col-md-6">
                     <div class="room-item">
-                        <img src="~/@room.Photo" alt="...">
+                        <img src="~/@room.Category.Photo" alt="...">
                         <div class="ri-text">
-                            <h4>@room.Сategory</h4>
+                            <h4>@room.Category.Name</h4>
+                            <h3>от @room.Tariffs.Min(t => t.Price) Р<span class="room-price">/Price for 1 nights</span></h3>
                             <partial name="_RoomCardPartial" model="room" />
                         </div>
                     </div>
