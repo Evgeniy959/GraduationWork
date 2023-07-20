@@ -67,16 +67,8 @@ namespace HotelAdmin.Service.ClientService
             }
         }
 
-        public async Task<bool> UpdateAsync(Client client/*, RoomDate date*/)
+        public async Task<bool> UpdateAsync(Client client)
         {
-            /*var roomDate = await _context.Dates.FirstOrDefaultAsync(x => x.Start == client.Start && x.End == client.End && x.RoomId == client.RoomId);
-            if (roomDate != null)
-            {
-                date.RoomId = client.RoomId;
-                roomDate.Start = client.Start;
-                roomDate.End = client.End;
-                _context.Dates.Update(roomDate);
-            }*/
             _context.Update(client);
             await _context.SaveChangesAsync();
             return true;

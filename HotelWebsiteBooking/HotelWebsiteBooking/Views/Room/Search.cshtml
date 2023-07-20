@@ -29,9 +29,31 @@
                         <img src="~/@date.Room.Category.Photo" alt="...">
                         <div class="ri-text">
                             <h4>@date.Room.Category.Name</h4>
-                            <h3>от @(date.Room.Tariffs.Min(t => t.Price) * ViewBag.Days) Р<span class="room-price">/Price for @ViewBag.Days nights</span></h3>
+                            <h3>от @(date.Room.Tariffs.Min(t => t.Price) * ViewBag.Days) Р<span class="room-price">/Цена за @ViewBag.Days ночи</span></h3>
                             <partial name="_RoomCardPartial" model="date.Room" />
-                            <a asp-controller="Room" asp-action="Tariff" asp-route-id="@date.RoomId" asp-route-price="@date.Room.Tariffs.Min(t => t.Price)" class="primary-btn">Booking Now</a>
+                            <a asp-controller="Home" asp-action="@date.Room.Category.Path" class="primary-btn">Подробнее</a>
+                            <br>
+                            <div class="top-nav">
+                                <div class="tn-right">
+                                    <a asp-controller="Room" asp-action="Tariff" asp-route-id="@date.RoomId" class="bk-btn">Выбрать</a>
+                                </div>
+                            </div>
+                            @*<div class="top-nav">
+                                <div class="col-lg-6">
+                                    <div class="tn-right">
+                                        <a asp-controller="Room" asp-action="Tariff" asp-route-id="@date.RoomId" class="bk-btn">Выбрать</a>
+                                    </div>
+                                </div>
+                        </div>
+                            <div class="room-details-item">
+                                <div class="rd-text">
+                                    <div class="rd-title">
+                                        <div class="rdt-right">
+                                            <a asp-controller="Room" asp-action="Tariff" asp-route-id="@date.RoomId">Выбрать</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>*@
                         </div>
                     </div>
                 </div>

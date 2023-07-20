@@ -1,4 +1,5 @@
 ﻿using HotelAdmin.Models;
+using HotelAdmin.Models.Entity;
 using HotelAdmin.Service.OrderService;
 using HotelAdmin.Service.RoomDateService;
 using Microsoft.AspNetCore.Mvc;
@@ -23,6 +24,38 @@ namespace HotelAdmin.Controllers
             ViewBag.CurrentPage = page;
 
             return View(_daoOrder.IndexAsync(page).Result);
+        }
+
+        public IActionResult Details(Guid id)
+        {
+            if (_daoOrder.GetAsync(id).Result == null)
+            {
+                return NotFound();
+            }
+
+            return View(_daoOrder.GetAsync(id).Result);
+        }
+
+        public IActionResult Edit(Guid id)
+        {
+            if (_daoOrder.GetAsync(id).Result == null)
+            {
+                return NotFound();
+            }
+
+            return View(_daoOrder.GetAsync(id).Result);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(Order order)
+        {
+            if (ModelState.IsValid && _daoOrder.UpdateAsync(order).Result == true)
+            {
+                return RedirectToAction("Index");
+            }
+            return View(order);
+
         }
 
         public IActionResult Delete(Guid id)

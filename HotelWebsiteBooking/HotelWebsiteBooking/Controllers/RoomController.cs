@@ -20,21 +20,20 @@ namespace HotelWebsiteBooking.Controllers
         private readonly AppDbContext _context;
         private readonly DaoDate _date;
         private readonly IDaoRoom _daoRoom;
+        private readonly DaoGuest _guest;
 
-        public RoomController(AppDbContext context, DaoDate date, IDaoRoom daoRoom)
+        public RoomController(AppDbContext context, DaoDate date, IDaoRoom daoRoom, DaoGuest guest)
         {
             _context = context;
             _date = date;
             _daoRoom = daoRoom;
+            _guest = guest;
         }
 
-        public async Task<IActionResult> Rooms(int page = 1)
+        public async Task<IActionResult> Rooms()
         {
-            ViewBag.TotalPages = Math.Ceiling((await _context.Rooms.ToListAsync()).Count / 9.0);
-            ViewBag.CurrentPage = page;
-
             return (await _context.Rooms.ToListAsync()).Any() ? 
-                          View(_daoRoom.RoomsAsync(page).Result) : NotFound();
+                          View(_daoRoom.RoomsAsync().Result) : NotFound();
 
         }
 
@@ -43,15 +42,17 @@ namespace HotelWebsiteBooking.Controllers
         public IActionResult Search(DateTime start, DateTime end, int count)
         {
             ViewBag.Days = end.Subtract(start).Days;
+            ViewBag.Guest = count;
             var rooms = _daoRoom.SearchAsync(start, end, count).Result;
             return rooms.Any() ? View(rooms) : RedirectToAction("NotFind");
         }
 
-        public IActionResult Tariff(int id, int price)
+        public IActionResult Tariff(int id)
         {
             ViewBag.Start = _date.start.ToLongDateString();
             ViewBag.End = _date.end.ToLongDateString();
-            ViewBag.Price = price;
+            //ViewBag.Price = price;
+            ViewBag.Guest = _guest.GuestCount;
             ViewBag.Days = _date.end.Subtract(_date.start).Days;
             _context.Categorys.Load();
             _context.Tariffs.Load();
@@ -65,22 +66,27 @@ namespace HotelWebsiteBooking.Controllers
             return View(room);
         }
 
-        public IActionResult Booking(int id, int price, Client client, string tariff)
+        public IActionResult Booking(int roomId, int tariffId, int price, string tariff, Client client)
+        //public IActionResult Booking(int id, string tariff, RoomTariff roomtariff, Client client)
         {
             ViewBag.Start = _date.start.ToShortDateString();
             ViewBag.End = _date.end.ToShortDateString();
             ViewBag.Price = price;
+            ViewBag.Guest = _guest.GuestCount;
             ViewBag.Days = _date.end.Subtract(_date.start).Days;
             ViewBag.Tariff = tariff;
+            ViewBag.TariffId = tariffId;
+            //ViewBag.Tariff = tariff.TariffPlan.Description;
             _context.Rooms.Load();
             _context.Categorys.Load();
-            var room = _context.Rooms.FirstOrDefault(m => m.Id == id);
+            var room = _context.Rooms.FirstOrDefault(m => m.Id == roomId);
             if (room == null)
             {
                 return NotFound();
             }
             client.Room = room;
-            client.RoomId = id;
+            //client.RoomId = roomId;
+            client.TariffId = tariffId;
             return View(client);
         }
 
@@ -90,7 +96,7 @@ namespace HotelWebsiteBooking.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddBooking(RoomDate date, Client client, Comment comment, string content, string payment, int price, Order order, OrderPayable orderPay)
+        public IActionResult AddBooking(RoomDate date, Client client, string content, string payment, int price, Order order, OrderPay orderPay)
         {
             /*ViewBag.Start = _date.start.ToLongDateString();
             ViewBag.End = _date.end.ToLongDateString();*/
@@ -99,16 +105,18 @@ namespace HotelWebsiteBooking.Controllers
             {
                 ViewBag.Price = price;
                 ViewBag.Сontent = content;
-                ViewBag.Name = client.Name;
+                ViewBag.Email = client.Email;
+                /*ViewBag.Name = client.Name;
                 ViewBag.Surname = client.Surname;
                 ViewBag.Email = client.Email;
                 ViewBag.Phone = client.Phone;
                 ViewBag.RoomId = client.RoomId;
-                return View("Pay");
+                ViewBag.TariffId = client.TariffId;*/
+                return View("Pay", client);
             }
             else if (payment == "inPlace")
             {
-                if (_daoRoom.AddBookingAsync(date, client, comment, content, order, orderPay).Result == true)
+                if (_daoRoom.AddBookingAsync(date, client, content, order, orderPay).Result == true)
                 {
                     return View("Info", client);
                 }
@@ -123,7 +131,7 @@ namespace HotelWebsiteBooking.Controllers
         }
         
         [HttpPost]
-        public IActionResult Pay(string stripeEmail, string stripeToken, RoomDate date, Client client, Comment comment, string content, Order order, OrderPayable orderPay, int price)
+        public IActionResult Pay(string stripeEmail, string stripeToken, RoomDate date, Client client, string content, Order order, OrderPay orderPay, int price)
         {
             var customers = new CustomerService();
             var charges = new ChargeService();
@@ -158,7 +166,7 @@ namespace HotelWebsiteBooking.Controllers
                 ViewBag.Status = charge.Status;
                 orderPay.Id = orderPayId;
                 orderPay.Status = "оплачено";
-                if (_daoRoom.AddBookingAsync(date, client, comment, content, order, orderPay).Result == true)
+                if (_daoRoom.AddBookingAsync(date, client, content, order, orderPay).Result == true)
                 {
                     //return View("Info", client);
                     //charge.Description = order.Id.ToString();

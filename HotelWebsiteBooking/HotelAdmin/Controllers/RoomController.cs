@@ -57,32 +57,38 @@ namespace HotelAdmin.Controllers
             {               
                 return RedirectToAction("Index");
             }
-            else
-            {
+            //else
+            //{
+                ViewBag.Categorys = new SelectList(_context.Categorys, "Id", "Name", room.CategoryId);
+                ViewBag.Tariffs = new MultiSelectList(_context.TariffPlans, "Id", "Description", room.Tariffs);
                 TempData["Status"] = "Room exsist!";
                 return View(room);
-            }
+            //}
             
         }
 
         public IActionResult Edit(int id)
         {
-            if (_daoRoom.GetAsync(id).Result == null)
+            var room = _daoRoom.GetAsync(id).Result;
+            if (room == null)
             {
                 return NotFound();
             }
-
-            return View(_daoRoom.GetAsync(id).Result);
+            ViewBag.Categorys = new SelectList(_context.Categorys, "Id", "Name", room.CategoryId);
+            ViewBag.Tariffs = new MultiSelectList(_context.TariffPlans, "Id", "Description", room.Tariffs);
+            return View(room);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit([Bind("Id,Number,Photo,Сategory,Price,PersonsCount")] Room room, IFormFile photo)
+        public async Task<IActionResult> Edit([Bind("Id,Number,CategoryId")] Room room, int[] tariffPlans)
         {
-            if (ModelState.IsValid && _daoRoom.UpdateAsync(room, photo).Result == true)
+            if (ModelState.IsValid && await _daoRoom.UpdateAsync(room, tariffPlans) == true)
             {
                 return RedirectToAction("Index");
             }
+            ViewBag.Categorys = new SelectList(_context.Categorys, "Id", "Name", room.CategoryId);
+            ViewBag.Tariffs = new MultiSelectList(_context.TariffPlans, "Id", "Description", room.Tariffs);
             return View(room);
 
         }

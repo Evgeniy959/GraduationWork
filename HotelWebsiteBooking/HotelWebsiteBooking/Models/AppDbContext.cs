@@ -16,7 +16,7 @@ namespace HotelWebsiteBooking.Models
         public DbSet<RoomDate> Dates { get; set; }
         public DbSet<Client> Clients { get; set; }
         public DbSet<Order> Orders { get; set; }
-        public DbSet<OrderPayable> OrderPayables { get; set; }
+        public DbSet<OrderPay> OrderPays { get; set; }
         public DbSet<Subscriber> Subscribers { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<RoomTariff> Tariffs { get; set; }

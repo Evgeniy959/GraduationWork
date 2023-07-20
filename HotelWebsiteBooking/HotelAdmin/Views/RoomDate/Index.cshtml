@@ -5,18 +5,18 @@
     int count = 1+(ViewBag.CurrentPage-1)*10;
 }
 
-<h1 class="text-center">List of dates with details</h1>
+<h1 class="text-center">Список комнат с датами бронирования</h1>
 
 <table class="table table-1">
     <thead>
         <tr class="tab-row">
             <th scope="col">#</th>
-            <th scope="col">Start date</th>
-            <th scope="col">End date</th>
-            <th scope ="col">Room Number</th>            
-            <th scope="col">Сategory</th>
-            <th scope="col">Price</th>
-            <th scope="col">Persons count</th>
+            <th scope="col">Номер комнаты</th>
+            <th scope="col">Дата заезда</th>
+            <th scope="col">Дата выезда</th>
+            <th scope="col">Категория</th>
+            <th scope="col">Цена от</th>
+            <th scope="col">Количество мест</th>
             <th scope="col"><div class="col-14">Actions</div></th>
         </tr>
     </thead>
@@ -24,12 +24,12 @@
 @foreach (var item in Model) {
         <tr class="tab-row">
             <th scope="row">@(count++)</th>
-            <td>@item.Start</td>
-            <td>@item.End</td>
             <td>@item.Room.Number</td>
+            <td>@item.Start</td>
+            <td>@item.End</td>            
             <td>@item.Room.Category.Name</td>
-                <td>@item.Room.Tariffs.Min(t => t.Price)</td>
-                <td>@item.Room.Category.PersonsCount</td>
+            <td>@item.Room.Tariffs.Min(t => t.Price)</td>
+            <td>@item.Room.Category.PersonsCount</td>
             
             <td><div class="col-14"><a asp-action="Delete" asp-controller="RoomDate" asp-route-id="@item.Id" class="form-control btn btn-danger">Delete</a></div></td>
         </tr>

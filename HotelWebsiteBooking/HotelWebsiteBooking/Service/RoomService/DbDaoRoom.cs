@@ -1,5 +1,6 @@
 ﻿using HotelWebsiteBooking.Models;
 using HotelWebsiteBooking.Models.Entity;
+using HotelWebsiteBooking.Service.CommentService;
 using HotelWebsiteBooking.Service.DateService;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,13 +10,17 @@ namespace HotelWebsiteBooking.Service.RoomService
     {
         private readonly AppDbContext _context;
         private readonly DaoDate _date;       
+        private readonly DaoGuest _guest;       
+        private readonly IDaoComment _comment;       
         
-        public DbDaoRoom(AppDbContext context, DaoDate date) 
+        public DbDaoRoom(AppDbContext context, DaoDate date, DaoGuest guest, IDaoComment comment) 
         {
             _context = context;
             _date = date;
+            _guest = guest;
+            _comment = comment;
         }
-        public async Task<bool> AddBookingAsync(RoomDate date, Client client, Comment comment, string content, Order order, OrderPayable orderPay)
+        public async Task<bool> AddBookingAsync(RoomDate date, Client client, string content, Order order, OrderPay orderPay)
         {
             client.Start = _date.start;
             client.End = _date.end;
@@ -24,12 +29,15 @@ namespace HotelWebsiteBooking.Service.RoomService
             if (orderPay.Status == "оплачено")
             {
                 orderPay.ClientId = client.Id;
+                orderPay.GuestCount = _guest.GuestCount;
                 orderPay.Date = DateTime.Now;
                 _context.Add(orderPay);
             }
             else
             {
                 order.ClientId = client.Id;
+                order.GuestCount = _guest.GuestCount;
+                order.Status = "без предоплаты";
                 order.Date = DateTime.Now;
                 _context.Add(order);
             }
@@ -51,49 +59,27 @@ namespace HotelWebsiteBooking.Service.RoomService
 
             if (content != null)
             {
-                comment.Name = client.Name;
-                comment.Email = client.Email;
-                comment.Content = content;
-                comment.Date = DateTime.Now;
-                _context.Comments.Add(comment);
-                await _context.SaveChangesAsync();
+                await _comment.AddCommentAsync(client, content);
 
             }
             return true;
 
         }
 
-        public async Task<List<Room>> RoomsAsync(int page)
+        public async Task<List<Room>> RoomsAsync()
         {
             await _context.Categorys.LoadAsync();
             await _context.Tariffs.LoadAsync();
-            var rooms = await _context.Rooms.ToListAsync();           
-            List<Room> list = new List<Room>();
-            int TotalPages = (int)Math.Ceiling(rooms.Count / 3.0);
-
-            if (page == TotalPages)
-            {
-                for (var i = (page - 1) * 3; i < rooms.Count; i++)
-                {
-                    list.Add(rooms[i]);
-                }
-                return list;
-            }
-            else
-            {
-                for (var i = (page - 1) * 3; i < page * 3; i++)
-                {
-                    list.Add(rooms[i]);
-                }
-                return list.GroupBy(g => g.CategoryId)
+            var rooms = await _context.Rooms.ToListAsync();
+            return rooms.GroupBy(g => g.CategoryId)
                         .Select(r => r.First())
                         .ToList();
-            }
         }
 
         public async Task<List<RoomDate>> SearchAsync(DateTime start, DateTime end, int count)
         {
             _date.SaveDate(start, end);
+            _guest.SaveGuest(count);
             await _context.Rooms.LoadAsync();
             await _context.Categorys.LoadAsync();
             await _context.Tariffs.LoadAsync();

@@ -1,9 +1,11 @@
 using HotelAdmin.Models;
+using HotelAdmin.Service.CategoryTariffService;
 using HotelAdmin.Service.ClientService;
 using HotelAdmin.Service.CommentService;
 using HotelAdmin.Service.OrderService;
 using HotelAdmin.Service.RoomDateService;
 using HotelAdmin.Service.RoomService;
+using HotelAdmin.Service.RoomTariffService;
 using HotelAdmin.Service.SubscriberService;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
@@ -15,8 +17,11 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddTransient<IDaoRoom, DbDaoRoom>();
+builder.Services.AddTransient<IDaoCategoryTariff, DbDaoCategoryTariff>();
+builder.Services.AddTransient<IDaoRoomTariff, DbDaoRoomTariff>();
 builder.Services.AddTransient<IDaoClient, DbDaoClient>();
 builder.Services.AddTransient<IDaoOrder, DbDaoOrder>();
+builder.Services.AddTransient<IDaoOrderPay, DbDaoOrderPay>();
 builder.Services.AddTransient<IDaoRoomDate, DbDaoRoomDate>();
 builder.Services.AddTransient<IDaoComment, DbDaoComment>();
 builder.Services.AddTransient<IDaoSubscriber, DbDaoSubscriber>();

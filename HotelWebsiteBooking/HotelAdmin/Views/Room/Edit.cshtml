@@ -17,27 +17,19 @@
                         <input type="hidden" asp-for="Id" />
                         <div class="form-group">
                             <label asp-for="Number" class="control-label"></label>
-                            <input asp-for="Number" class="form-control nav" />
+                            <input asp-for="Number" class="form-control" />
                             <span asp-validation-for="Number" class="text-danger"></span>
                         </div>
                         <div class="form-group">
-                            <input name="Photo" class="form-control" type="file">
-                            <span asp-validation-for="@Model.Category.Photo" class="text-danger"></span>
+                            <label class="control-label">Сategory</label>
+                            <select asp-for="CategoryId" asp-items="@ViewBag.Categorys" class="form-control">
+                            </select>
+                            <span asp-validation-for="CategoryId" class="text-danger"></span>
                         </div>
                         <div class="form-group">
-                            <label asp-for="@Model.Category.Name" class="control-label"></label>
-                            <input asp-for="@Model.Category.Name" class="form-control nav" />
-                            <span asp-validation-for="@Model.Category.Name" class="text-danger"></span>
-                        </div>
-                        <div class="form-group">
-                            <label asp-for="@Model.Tariffs.Min(t => t.Price)" class="control-label"></label>
-                            <input asp-for="@Model.Tariffs.Min(t => t.Price)" class="form-control nav" />
-                            <span asp-validation-for="@Model.Tariffs.Min(t => t.Price)" class="text-danger"></span>
-                        </div>
-                        <div class="form-group">
-                            <label asp-for="@Model.Category.PersonsCount" class="control-label"></label>
-                            <input asp-for="@Model.Category.PersonsCount" class="form-control nav" />
-                            <span asp-validation-for="@Model.Category.PersonsCount" class="text-danger"></span>
+                            <label class="control-label">TariffPlans</label>
+                            <select required name="tariffPlans" id="tariffPlans" multiple asp-items="@ViewBag.Tariffs" class="form-control">
+                            </select>
                         </div>
                         <br />
                         <div class="form-group">
@@ -59,4 +51,9 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script src="/lib/chosen/chosen.jquery.js"></script>
+    <script>
+        $("#tariffPlans").chosen();
+    </script>
 }

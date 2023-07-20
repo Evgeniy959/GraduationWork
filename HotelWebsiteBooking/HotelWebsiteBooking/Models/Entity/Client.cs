@@ -5,6 +5,7 @@ namespace HotelWebsiteBooking.Models.Entity
     public class Client
     {
         public int Id { get; set; }
+        public int TariffId { get; set; }
         public int RoomId { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
@@ -15,6 +16,8 @@ namespace HotelWebsiteBooking.Models.Entity
 
         // навигационные свойства
         public Room? Room { get; set; }
+        public RoomTariff? Tariff { get; set; }
+        public ICollection<RoomDate>? RoomDates { get; set; }
 
         public Client()
         {

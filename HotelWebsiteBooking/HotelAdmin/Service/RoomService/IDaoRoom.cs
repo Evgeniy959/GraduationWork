@@ -7,7 +7,7 @@ namespace HotelAdmin.Service.RoomService
         Task<List<Room>> IndexAsync(int page);
         Task<bool> AddAsync(Room room, RoomDate date, int[] tariffPlans);
         Task<Room> GetAsync(int id);
-        Task<bool> UpdateAsync(Room room, IFormFile photo);
+        Task<bool> UpdateAsync(Room room, int[] tariffPlans);
         Task DeleteConfirmedAsync(int id);
     }
 }

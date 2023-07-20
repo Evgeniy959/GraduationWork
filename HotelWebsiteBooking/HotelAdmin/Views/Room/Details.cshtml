@@ -13,28 +13,34 @@
     <div class="col-md-6">
         <dl class="row">
             <dt class="col-sm-4 info-sise">
-                @Html.DisplayNameFor(model => model.Number)
+                Номер:
             </dt>
             <dd class="col-sm-8 info-sise">
                 @Html.DisplayFor(model => model.Number)
             </dd>
             <dt class="col-sm-4 info-sise">
-                @Html.DisplayNameFor(model => model.Category.Name)
+                Категория:
             </dt>
             <dd class="col-sm-8 info-sise">
                 @Html.DisplayFor(model => model.Category.Name)
-            </dd>
+            </dd>            
             <dt class="col-sm-4 info-sise">
-                @Html.DisplayNameFor(model => model.Tariffs.Min(t => t.Price))
-            </dt>
-            <dd class="col-sm-8 info-sise">
-                @Html.DisplayFor(model => model.Tariffs.Min(t => t.Price))
-            </dd>
-            <dt class="col-sm-4 info-sise">
-                Persons count
+                Количество мест:
             </dt>
             <dd class="col-sm-8 info-sise">
                 @Html.DisplayFor(model => model.Category.PersonsCount)
+            </dd>
+            <dt class="col-sm-4 info-sise">
+                Площадь:
+            </dt>
+            <dd class="col-sm-8 info-sise">
+                @Html.DisplayFor(model => model.Category.Square)
+            </dd>
+            <dt class="col-sm-4 info-sise">
+                Цена от:
+            </dt>
+            <dd class="col-sm-8 info-sise">
+                @Model.Tariffs.Min(t => t.Price)
             </dd>
         </dl>
     </div>

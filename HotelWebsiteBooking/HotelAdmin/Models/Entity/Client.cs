@@ -6,6 +6,7 @@ namespace HotelAdmin.Models.Entity
     {
         public int Id { get; set; }
         public int RoomId { get; set; }
+        public int TariffId { get; set; }
         [Required]
         public string Name { get; set; }
         [Required]
@@ -21,6 +22,8 @@ namespace HotelAdmin.Models.Entity
 
         // навигационные свойства
         public Room? Room { get; set; }
+        public RoomTariff? Tariff { get; set; }
+        public ICollection<RoomDate>? RoomDates { get; set; }
 
         public Client()
         {

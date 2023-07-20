@@ -7,19 +7,12 @@ namespace HotelWebsiteBooking.Models.Entity
     public class Category
     {
         public int Id { get; set; }
-        [Required]
         public string Name { get; set; }
         public string Photo { get; set; }
-        /*[Required]
-        public string Сategory { get; set; }*/
-        [Required]
         public string Square { get; set; }
-        /*[Required]
-        public int Price { get; set; }*/
-        [Display(Name = "Persons count")]
         [Column("Persons_count")]
-        [Required]
         public int PersonsCount { get; set; }
+        public string Path { get; set; }
 
         public ICollection<Room>? Rooms { get; set; }
 
@@ -30,6 +23,7 @@ namespace HotelWebsiteBooking.Models.Entity
             Name = "";
             Square = "";
             PersonsCount = default;
+            Path = "";
         }
     }
 }

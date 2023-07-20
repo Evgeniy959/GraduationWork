@@ -15,19 +15,16 @@ namespace HotelAdmin.Models
         public DbSet<RoomDate> Dates { get; set; }
         public DbSet<Client> Clients { get; set; }
         public DbSet<Order> Orders { get; set; }
-        public DbSet<OrderPayable> OrderPayables { get; set; }
+        public DbSet<OrderPay> OrderPays { get; set; }
         public DbSet<Subscriber> Subscribers { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<RoomTariff> Tariffs { get; set; }
-        public DbSet<RoomTariffAdmin> TariffAdmins { get; set; }
+        public DbSet<CategoryTariff> TariffAdmins { get; set; }
         public DbSet<TariffPlan> TariffPlans { get; set; }
         public DbSet<Admin> Admins { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            /*modelBuilder.Entity<RoomTariff>()
-                .HasKey(r => r.RoomId);*/
-
             modelBuilder.Entity<Admin>().HasData(
                 new Admin
                 {
@@ -43,7 +40,8 @@ namespace HotelAdmin.Models
                     Photo = "img/room/room-s.jpeg",
                     Name = "Стандарт",
                     Square = "20 кв.м",
-                    PersonsCount = 2
+                    PersonsCount = 2,
+                    Path = "Standard"
                 },
                 new Category
                 {
@@ -51,7 +49,8 @@ namespace HotelAdmin.Models
                     Photo = "img/room/room-sb.jpg",
                     Name = "Стандарт с большой кроватью",
                     Square = "20 кв.м",
-                    PersonsCount = 2
+                    PersonsCount = 2,
+                    Path = "StandardBig"
                 },
                 new Category
                 {
@@ -59,7 +58,8 @@ namespace HotelAdmin.Models
                     Photo = "img/room/room-si.jpeg",
                     Name = "Стандарт Улучшенный",
                     Square = "25 кв.м",
-                    PersonsCount = 2
+                    PersonsCount = 2,
+                    Path = "StandardGood"
                 },
                 new Category
                 {
@@ -67,7 +67,8 @@ namespace HotelAdmin.Models
                     Photo = "img/room/room-sbi.jpeg",
                     Name = "Стандарт Улучшенный с большой кроватью",
                     Square = "25 кв.м",
-                    PersonsCount = 2
+                    PersonsCount = 2,
+                    Path = "StandardGoodBig"
                 },
                 new Category
                 {
@@ -75,7 +76,8 @@ namespace HotelAdmin.Models
                     Photo = "img/room/room-pl.jpg",
                     Name = "Полулюкс",
                     Square = "32 кв.м",
-                    PersonsCount = 4
+                    PersonsCount = 4,
+                    Path = "SemiLuxury"
                 },
                 new Category
                 {
@@ -83,7 +85,8 @@ namespace HotelAdmin.Models
                     Photo = "img/room/room-l.jpg",
                     Name = "Люкс",
                     Square = "46 кв.м",
-                    PersonsCount = 4
+                    PersonsCount = 4,
+                    Path = "Luxury"
                 });
 
             modelBuilder.Entity<Room>().HasData(
@@ -140,169 +143,169 @@ namespace HotelAdmin.Models
                 new TariffPlan { Id = 4, Description = "Включён завтрак, обед и ужин" }
                 );
 
-            modelBuilder.Entity<RoomTariffAdmin>().HasData(
-                new RoomTariffAdmin
+            modelBuilder.Entity<CategoryTariff>().HasData(
+                new CategoryTariff
                 {
                     Id = 1,
                     CategoryId = 1,
                     TariffPlanId = 1,
                     Price = 3600
                 },
-                new RoomTariffAdmin
+                new CategoryTariff
                 {
                     Id = 2,
                     CategoryId = 1,
                     TariffPlanId = 2,
                     Price = 4800
                 },
-                new RoomTariffAdmin
+                new CategoryTariff
                 {
                     Id = 3,
                     CategoryId = 1,
                     TariffPlanId = 3,
                     Price = 6400
                 },
-                new RoomTariffAdmin
+                new CategoryTariff
                 {
                     Id = 4,
                     CategoryId = 1,
                     TariffPlanId = 4,
                     Price = 7400
                 },
-                new RoomTariffAdmin
+                new CategoryTariff
                 {
                     Id = 5,
                     CategoryId = 2,
                     TariffPlanId = 1,
                     Price = 3600
                 },
-                new RoomTariffAdmin
+                new CategoryTariff
                 {
                     Id = 6,
                     CategoryId = 2,
                     TariffPlanId = 2,
                     Price = 4800
                 },
-                new RoomTariffAdmin
+                new CategoryTariff
                 {
                     Id = 7,
                     CategoryId = 2,
                     TariffPlanId = 3,
                     Price = 6400
                 },
-                new RoomTariffAdmin
+                new CategoryTariff
                 {
                     Id = 8,
                     CategoryId = 2,
                     TariffPlanId = 4,
                     Price = 7400
                 },
-                new RoomTariffAdmin
+                new CategoryTariff
                 {
                     Id = 9,
                     CategoryId = 3,
                     TariffPlanId = 1,
                     Price = 4100
                 },
-                new RoomTariffAdmin
+                new CategoryTariff
                 {
                     Id = 10,
                     CategoryId = 3,
                     TariffPlanId = 2,
                     Price = 5300
                 },
-                new RoomTariffAdmin
+                new CategoryTariff
                 {
                     Id = 11,
                     CategoryId = 3,
                     TariffPlanId = 3,
                     Price = 6900
                 },
-                new RoomTariffAdmin
+                new CategoryTariff
                 {
                     Id = 12,
                     CategoryId = 3,
                     TariffPlanId = 4,
                     Price = 7900
                 },
-                new RoomTariffAdmin
+                new CategoryTariff
                 {
                     Id = 13,
                     CategoryId = 4,
                     TariffPlanId = 1,
                     Price = 4100
                 },
-                new RoomTariffAdmin
+                new CategoryTariff
                 {
                     Id = 14,
                     CategoryId = 4,
                     TariffPlanId = 2,
                     Price = 5300
                 },
-                new RoomTariffAdmin
+                new CategoryTariff
                 {
                     Id = 15,
                     CategoryId = 4,
                     TariffPlanId = 3,
                     Price = 6900
                 },
-                new RoomTariffAdmin
+                new CategoryTariff
                 {
                     Id = 16,
                     CategoryId = 4,
                     TariffPlanId = 4,
                     Price = 7900
                 },
-                new RoomTariffAdmin
+                new CategoryTariff
                 {
                     Id = 17,
                     CategoryId = 5,
                     TariffPlanId = 1,
                     Price = 10300
                 },
-                new RoomTariffAdmin
+                new CategoryTariff
                 {
                     Id = 18,
                     CategoryId = 5,
                     TariffPlanId = 2,
                     Price = 11400
                 },
-                new RoomTariffAdmin
+                new CategoryTariff
                 {
                     Id = 19,
                     CategoryId = 5,
                     TariffPlanId = 3,
                     Price = 12700
                 },
-                new RoomTariffAdmin
+                new CategoryTariff
                 {
                     Id = 20,
                     CategoryId = 5,
                     TariffPlanId = 4,
                     Price = 13700
                 },
-                new RoomTariffAdmin
+                new CategoryTariff
                 {
                     Id = 21,
                     CategoryId = 6,
                     TariffPlanId = 1,
                     Price = 12300
                 },
-                new RoomTariffAdmin
+                new CategoryTariff
                 {
                     Id = 22,
                     CategoryId = 6,
                     TariffPlanId = 2,
                     Price = 13400
                 },
-                new RoomTariffAdmin
+                new CategoryTariff
                 {
                     Id = 23,
                     CategoryId = 6,
                     TariffPlanId = 3,
                     Price = 14700
                 },
-                new RoomTariffAdmin
+                new CategoryTariff
                 {
                     Id = 24,
                     CategoryId = 6,

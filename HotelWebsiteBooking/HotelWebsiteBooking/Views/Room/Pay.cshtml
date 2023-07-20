@@ -1,5 +1,6 @@
 ﻿@using Microsoft.Extensions.Options
 @inject IOptions<HotelWebsiteBooking.Data.StripeOptions> Stripe
+@model HotelWebsiteBooking.Models.Entity.Client
 
 @{
     ViewData["Title"] = "Pay";
@@ -21,13 +22,21 @@
                         <form asp-action="Pay" asp-controller="Room" method="post">
                             <article>
                                 <label>Сумма: @ViewBag.Price руб</label>
-                                <input name="Price" value="@ViewBag.Price" type="hidden" />
-                                <input name="сontent" value="@ViewBag.Сontent" type="hidden" />
-                                <input name="Name" value="@ViewBag.Name" type="hidden" />
+                                <input name="price" value="@ViewBag.Price" type="hidden" />
+                                <input name="content" value="@ViewBag.Сontent" type="hidden" />
+                                <input asp-for="Name" type="hidden" />
+                                <input asp-for="Surname" type="hidden" />
+                                <input asp-for="Email" type="hidden" />
+                                <input asp-for="Phone" type="hidden" />
+                                <input asp-for="RoomId" type="hidden" />
+                                <input asp-for="TariffId" type="hidden" />
+
+                                @*<input name="Name" value="@ViewBag.Name" type="hidden" />
                                 <input name="Surname" value="@ViewBag.Surname" type="hidden" />
                                 <input name="Email" value="@ViewBag.Email" type="hidden" />
                                 <input name="Phone" value="@ViewBag.Phone" type="hidden" />
                                 <input name="RoomId" value="@ViewBag.RoomId" type="hidden" />
+                                <input name="TariffId" value="@ViewBag.TariffId" type="hidden" />*@
                             </article>
                             <script src="//checkout.stripe.com/v2/checkout.js"
                                     class="stripe-button" 

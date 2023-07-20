@@ -9,11 +9,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="breadcrumb-text">
-                    <h2>Выберите тариф</h2>
-                    <div class="bt-option">
-                        <a asp-controller="Home" asp-action="Index">Home</a>
-                        <span>Rooms</span>
-                    </div>
+                    <h2>Выберите тариф</h2>                    
                 </div>
             </div>
         </div>
@@ -29,16 +25,17 @@
         <div class="col-md-8">
             <div class="card-body">
                 <a href="">
-                    <h5 class="card-title">@Model.Category.Name</h5>
+                    <h4 class="card-title"><strong>@Model.Category.Name</strong></h4>
                 </a>
-                <p class="card-text">до @Model.Category.PersonsCount мест</p>
-                <p class="card-text">@Model.Category.Square</p>
+                <p class="card-text">Вместимость:&ensp; до @Model.Category.PersonsCount мест, &emsp; Площадь:&ensp; @Model.Category.Square, &emsp; Количество комнат:&ensp; 1, &emsp; Количество гостей:&ensp; @ViewBag.Guest</p>
                 <h5>
                     Wi-Fi, кондиционер, телевизор, ванная комната с ванной...
-                </h5>
-                <br />
-                <a asp-controller="Home" asp-action="@Model.Category.Photo.Substring(9).Replace("-sb.jpg", "").Replace("-s.jpeg", "")" class="primary-btn">Подробнее</a>
+                </h5>                
             </div>
+            <div class="room-item">
+                <div class="ri-text"><a asp-controller="Home" asp-action="@Model.Category.Photo.Substring(9).Replace("-sb.jpg", "").Replace("-s.jpeg", "")" class="primary-btn">Подробнее</a></div>
+            </div>
+
         </div>
     </div>
 </div>
@@ -48,12 +45,24 @@
             @foreach (var item in Model.Tariffs)
             {
                 <div class="col-lg-3 col-md-6">
-                    <div class="room-item">
-                        
+                    <div class="room-item">                            
                         <div class="ri-text">
+                            <div class="col-lg-2">
+                                <div class="breadcrumb-text">
+                                    <div class="bt-option">
+                                        <a asp-controller="Home" asp-action="Index"><span style="font-size: 14px">Подробнее</span></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
                             <h4>@item.TariffPlan.Description</h4>
-                            <h3>@(item.Price * ViewBag.Days) Р<span class="room-price">/Price for @ViewBag.Days nights</span></h3>
-                            <a asp-controller="Room" asp-action="Booking" asp-route-id="@item.RoomId" asp-route-price="@item.Price" asp-route-tariff="@item.TariffPlan.Description" class="primary-btn">Booking Now</a>
+                            <h3>@(item.Price * ViewBag.Days) Р<span class="room-price">/Цена за @ViewBag.Days ночи</span></h3>
+                            <br>
+                            <div class="top-nav">
+                                <div class="tn-right">
+                                    <a asp-controller="Room" asp-action="Booking" asp-route-tariffId="@item.Id" asp-route-roomId="@item.RoomId" asp-route-price="@(item.Price * ViewBag.Days)" asp-route-tariff="@item.TariffPlan.Description" class="bk-btn">Забронировать</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -29,50 +29,13 @@
                         <img src="~/@room.Category.Photo" alt="...">
                         <div class="ri-text">
                             <h4>@room.Category.Name</h4>
-                            <h3>от @room.Tariffs.Min(t => t.Price) Р<span class="room-price">/Price for 1 nights</span></h3>
+                            <h3>от @room.Tariffs.Min(t => t.Price) Р<span class="room-price">/Цена за 1 ночь</span></h3>
                             <partial name="_RoomCardPartial" model="room" />
+                            <a asp-controller="Home" asp-action="@room.Category.Path" class="primary-btn">Подробнее</a>
                         </div>
                     </div>
                 </div>
             }
-            <div class="col-lg-12">
-                <div class="room-pagination">
-                    @if (ViewBag.CurrentPage > 1)
-                    {
-                        <a asp-action="Rooms"
-                        asp-controller="Room"
-                        asp-route-page="@(ViewBag.CurrentPage-1)">Previous</a>
-                    }
-
-                    @for (var i = ViewBag.CurrentPage - 3; i <= ViewBag.CurrentPage + 3; i++)
-                    {
-
-                        @if (i > 0 && i <= ViewBag.TotalPages)
-                        {
-                            @if (ViewBag.CurrentPage == i)
-                            {
-                                <a asp-action="Rooms"
-                                asp-controller="Room"
-                                asp-route-page="@i">@i<i class="nav-link active" style="background-color:sandybrown"></i></a>
-                            }
-                            else
-                            {
-                                <a asp-action="Rooms"
-                                asp-controller="Room"
-                                asp-route-page="@i">@i</a>
-                            }
-                        }
-
-                    }
-
-                    @if (ViewBag.CurrentPage < ViewBag.TotalPages)
-                    {
-                        <a asp-action="Rooms"
-                        asp-controller="Room"
-                        asp-route-page="@(ViewBag.CurrentPage+1)">Next<i class="fa fa-long-arrow-right"></i></a>
-                    }
-                </div>
-            </div>
         </div>
     </div>
 </section>

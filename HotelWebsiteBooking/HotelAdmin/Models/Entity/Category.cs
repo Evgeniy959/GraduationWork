@@ -10,18 +10,16 @@ namespace HotelAdmin.Models.Entity
         [Required]
         public string Name { get; set; }
         public string Photo { get; set; }
-        /*[Required]
-        public string Сategory { get; set; }*/
         [Required]
         public string Square { get; set; }
-        /*[Required]
-        public int Price { get; set; }*/
-        [Display(Name = "Persons count")]
+        [Display(Name = "Вместимость, чел")]
         [Column("Persons_count")]
         [Required]
         public int PersonsCount { get; set; }
+        public string Path { get; set; }
 
         public ICollection<Room>? Rooms { get; set; }
+        public ICollection<CategoryTariff>? TariffAdmins { get; set; }
 
         public Category()
         {
@@ -30,6 +28,7 @@ namespace HotelAdmin.Models.Entity
             Name = "";
             Square = "";
             PersonsCount = default;
+            Path = "";
         }
     }
 }

@@ -25,6 +25,10 @@ namespace HotelAdmin.Service.OrderService
         public async Task<Order> GetAsync(Guid id)
         {
             await _context.Clients.LoadAsync();
+            await _context.Rooms.LoadAsync();
+            await _context.Categorys.LoadAsync();
+            await _context.Tariffs.LoadAsync();
+            await _context.TariffPlans.LoadAsync();
             var order = await _context.Orders
                 .SingleOrDefaultAsync(m => m.Id == id);
 
@@ -59,6 +63,13 @@ namespace HotelAdmin.Service.OrderService
                 }
                 return list;
             }
+        }
+
+        public async Task<bool> UpdateAsync(Order order)
+        {
+            _context.Update(order);
+            await _context.SaveChangesAsync();
+            return true;
         }
     }
 }

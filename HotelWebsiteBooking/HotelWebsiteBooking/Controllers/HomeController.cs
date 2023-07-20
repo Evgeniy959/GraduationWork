@@ -39,7 +39,32 @@ namespace HotelWebsiteBooking.Controllers
             return View();
         }
 
-        public IActionResult room()
+        public IActionResult Standard()
+        {
+            return View();
+        }
+
+        public IActionResult StandardBig()
+        {
+            return View();
+        }
+
+        public IActionResult StandardGood()
+        {
+            return View();
+        }
+
+        public IActionResult StandardGoodBig()
+        {
+            return View();
+        }
+
+        public IActionResult SemiLuxury()
+        {
+            return View();
+        }
+
+        public IActionResult Luxury()
         {
             return View();
         }
