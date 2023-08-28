@@ -1,0 +1,24 @@
+﻿using Stripe;
+using System;
+
+namespace HotelWebsiteBooking.Models.Entity
+{
+    public class RoomDate //: IComparable<RoomDate>
+    {
+        public int Id { get; set; }
+        public DateTime? Start { get; set; }
+        public DateTime? End { get; set; }
+        public int RoomId { get; set; }
+        public int? ClientId { get; set; }
+
+        // навигационные свойства
+        public Room? Room { get; set; }
+        public Client? Client { get; set; }
+
+        /*public int CompareTo(RoomDate? date)
+        {
+            if (date is null) throw new ArgumentException("Некорректное значение параметра");
+            return date.Room.CategoryId.CompareTo(date.Room.CategoryId);
+        }*/
+    }
+}

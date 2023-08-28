@@ -1,0 +1,29 @@
+﻿@{
+    ViewData["Title"] = "Notfind";
+}
+
+<div class="breadcrumb-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb-text">
+                    @if (TempData.ContainsKey("Status"))
+                    {
+                        <div class="alert alert-warning" role="alert">
+                            <h4>
+                                <strong>@TempData["Status"]</strong>
+                            </h4>
+                            <h4>
+                                К СОЖАЛЕНИЮ свободных номеров на выбранные даты не найдено
+                                Попробуйте изменить параметры размещения или даты заезда и выезда.
+                            </h4>
+                        </div>
+                    }
+                    <div class="bt-option">
+                        <a asp-controller="Home" asp-action="Index"><h5 style="color: blue">Продолжить поиск</h5></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

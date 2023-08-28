@@ -1,0 +1,42 @@
+﻿@model HotelAdmin.Models.Entity.Category
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h3>Вы уверены, что хотите удалить это?</h3>
+<div class="row">
+    <div class="col-md-6">
+        <img src="~/@Html.DisplayFor(model => model.Photo)" alt="Photo" style="height: 350px;">
+    </div>
+    <div class="col-md-6 delete-photo">
+        <dl class="row">
+            <dt class="col-sm-4 delete-sise">
+                Категория:
+            </dt>
+            <dd class="col-sm-8 delete-sise">
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+            <dt class="col-sm-4 delete-sise">
+                Количество мест:
+            </dt>
+            <dd class="col-sm-8 delete-sise">
+                @Html.DisplayFor(model => model.PersonsCount)
+            </dd>
+            <dt class="col-sm-4 delete-sise">
+                Площадь:
+            </dt>
+            <dd class="col-sm-8 delete-sise">
+                @Html.DisplayFor(model => model.Square)
+            </dd>
+        </dl>
+    </div>    
+</div>
+<br/>
+<div>
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Delete" class="btn btn-danger" />
+        <a asp-action="Index" class="btn btn-info">Сancel</a>
+    </form>
+</div>

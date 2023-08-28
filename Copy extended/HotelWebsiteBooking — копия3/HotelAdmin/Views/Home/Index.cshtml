@@ -1,0 +1,18 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@if (User.IsInRole("Administrator"))
+{
+    <div class="text-center">
+        <h1 class="display-4">Welcome hotel admin</h1>
+    </div>
+
+}
+@if (User.IsInRole("BookingManager"))
+{
+    <div class="text-center">
+        <h1 class="display-4">Welcome hotel booking manager</h1>
+    </div>
+
+}

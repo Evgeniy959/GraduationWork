@@ -1,0 +1,20 @@
+﻿@model HotelWebsiteBooking.Models.Entity.Subscriber
+
+@{
+    ViewData["Title"] = "NotSubscribe";
+}
+
+<div class="breadcrumb-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb-text">
+                    <h4>Почта @Model.Email не существует! Введите другой адрес электронной почты</h4>
+                    <div class="bt-option">
+                        <a asp-controller="Главная" asp-action="Index">Продолжить</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
